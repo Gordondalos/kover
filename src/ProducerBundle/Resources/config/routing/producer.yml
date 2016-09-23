@@ -1,0 +1,24 @@
+producer_index:
+    path:     /
+    defaults: { _controller: "ProducerBundle:Producer:index" }
+    methods:  GET
+
+producer_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProducerBundle:Producer:show" }
+    methods:  GET
+
+producer_new:
+    path:     /new
+    defaults: { _controller: "ProducerBundle:Producer:new" }
+    methods:  [GET, POST]
+
+producer_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProducerBundle:Producer:edit" }
+    methods:  [GET, POST]
+
+producer_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProducerBundle:Producer:delete" }
+    methods:  DELETE

@@ -1,0 +1,27 @@
+ClientAdressBundle\Entity\ClientAdress:
+    type:  entity
+    table: client_adress
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        description:
+            type: text
+            nullable: true
+            fixed: false
+        adress:
+            type: text
+            nullable: true
+            fixed: false
+        phone:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        client:
+            type: integer
+            nullable: false
+
+    lifecycleCallbacks: {  }

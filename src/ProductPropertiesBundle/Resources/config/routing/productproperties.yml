@@ -1,0 +1,24 @@
+productproperties_index:
+    path:     /
+    defaults: { _controller: "ProductPropertiesBundle:ProductProperties:index" }
+    methods:  GET
+
+productproperties_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProductPropertiesBundle:ProductProperties:show" }
+    methods:  GET
+
+productproperties_new:
+    path:     /new
+    defaults: { _controller: "ProductPropertiesBundle:ProductProperties:new" }
+    methods:  [GET, POST]
+
+productproperties_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductPropertiesBundle:ProductProperties:edit" }
+    methods:  [GET, POST]
+
+productproperties_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductPropertiesBundle:ProductProperties:delete" }
+    methods:  DELETE

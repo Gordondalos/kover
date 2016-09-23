@@ -1,0 +1,7 @@
+producer_producer:
+    resource: "@ProducerBundle/Resources/config/routing/producer.yml"
+    prefix:   /producer
+
+producer_homepage:
+    path:     /
+    defaults: { _controller: ProducerBundle:Default:index }

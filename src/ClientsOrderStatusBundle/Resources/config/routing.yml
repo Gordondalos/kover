@@ -1,0 +1,7 @@
+clients_order_status_clientsorderstatus:
+    resource: "@ClientsOrderStatusBundle/Resources/config/routing/clientsorderstatus.yml"
+    prefix:   /clientsorderstatus
+
+clients_order_status_homepage:
+    path:     /
+    defaults: { _controller: ClientsOrderStatusBundle:Default:index }

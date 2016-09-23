@@ -1,0 +1,7 @@
+category_category:
+    resource: "@CategoryBundle/Resources/config/routing/category.yml"
+    prefix:   /category
+
+category_homepage:
+    path:     /
+    defaults: { _controller: CategoryBundle:Default:index }

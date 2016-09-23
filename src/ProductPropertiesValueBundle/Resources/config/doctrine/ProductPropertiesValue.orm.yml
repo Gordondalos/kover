@@ -1,0 +1,23 @@
+ProductPropertiesValueBundle\Entity\ProductPropertiesValue:
+    type:  entity
+    table: product_properties_value
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        propertiesValue:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        properties:
+            type: integer
+            nullable: false
+        product:
+            type: integer
+            nullable: false
+
+
+    lifecycleCallbacks: {  }

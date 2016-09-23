@@ -1,0 +1,39 @@
+ProductBundle\Entity\Product:
+    type:  entity
+    table: product
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        properties:
+            type: text
+            nullable: true
+            fixed: false
+        description:
+            type: text
+            nullable: true
+            fixed: false
+        title:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        producer:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        category:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        photoProduct:
+            type: text
+            nullable: true
+
+
+
+    lifecycleCallbacks: {  }

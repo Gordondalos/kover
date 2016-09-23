@@ -1,0 +1,29 @@
+ProducerBundle\Entity\Producer:
+    type:  entity
+    table: producer
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        description:
+            type: text
+            nullable: true
+            fixed: false
+        adress:
+            type: text
+            nullable: true
+            fixed: false
+        phone:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+        logo:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+
+    lifecycleCallbacks: {  }

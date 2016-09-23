@@ -1,0 +1,20 @@
+ProductProducerPriceBundle\Entity\ProductProducerPrice:
+    type:  entity
+    table: product_producer_price
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        Product:
+            type: integer
+            nullable: false
+        Producer:
+            type: integer
+            nullable: false
+        price:
+              type: integer
+              nullable: false
+
+    lifecycleCallbacks: {  }

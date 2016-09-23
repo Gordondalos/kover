@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Producer</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ producer.id }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ producer.description }}</td>
+            </tr>
+            <tr>
+                <th>Adress</th>
+                <td>{{ producer.adress }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ producer.phone }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ producer.logo }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('producer_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('producer_edit', { 'id': producer.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

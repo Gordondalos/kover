@@ -18,6 +18,17 @@ class AppKernel extends Kernel
 	        new FOS\UserBundle\FOSUserBundle(),
             new AppBundle\AppBundle(),
             new UserBundle\UserBundle(),
+            new ProducerBundle\ProducerBundle(),
+            new ClientBundle\ClientBundle(),
+            new ClientAdressBundle\ClientAdressBundle(),
+            new ProductBundle\ProductBundle(),
+            new ProductPropertiesBundle\ProductPropertiesBundle(),
+            new ProductPropertiesValueBundle\ProductPropertiesValueBundle(),
+            new CategoryBundle\CategoryBundle(),
+            new OrderBundle\OrderBundle(),
+            new ProductProducerPriceBundle\ProductProducerPriceBundle(),
+            new ClientsOrderStatusBundle\ClientsOrderStatusBundle(),
+            new StatisticBundle\StatisticBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

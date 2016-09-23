@@ -1,0 +1,7 @@
+product_properties_productproperties:
+    resource: "@ProductPropertiesBundle/Resources/config/routing/productproperties.yml"
+    prefix:   /productproperties
+
+product_properties_homepage:
+    path:     /
+    defaults: { _controller: ProductPropertiesBundle:Default:index }

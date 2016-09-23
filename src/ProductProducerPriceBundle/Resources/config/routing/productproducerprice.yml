@@ -1,0 +1,24 @@
+productproducerprice_index:
+    path:     /
+    defaults: { _controller: "ProductProducerPriceBundle:ProductProducerPrice:index" }
+    methods:  GET
+
+productproducerprice_show:
+    path:     /{id}/show
+    defaults: { _controller: "ProductProducerPriceBundle:ProductProducerPrice:show" }
+    methods:  GET
+
+productproducerprice_new:
+    path:     /new
+    defaults: { _controller: "ProductProducerPriceBundle:ProductProducerPrice:new" }
+    methods:  [GET, POST]
+
+productproducerprice_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ProductProducerPriceBundle:ProductProducerPrice:edit" }
+    methods:  [GET, POST]
+
+productproducerprice_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ProductProducerPriceBundle:ProductProducerPrice:delete" }
+    methods:  DELETE

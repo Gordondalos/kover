@@ -1,0 +1,7 @@
+product_producer_price_productproducerprice:
+    resource: "@ProductProducerPriceBundle/Resources/config/routing/productproducerprice.yml"
+    prefix:   /productproducerprice
+
+product_producer_price_homepage:
+    path:     /
+    defaults: { _controller: ProductProducerPriceBundle:Default:index }

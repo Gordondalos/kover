@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Order</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ order.id }}</td>
+            </tr>
+            <tr>
+                <th>Datecreated</th>
+                <td>{% if order.dateCreated %}{{ order.dateCreated|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Datefinish</th>
+                <td>{% if order.dateFinish %}{{ order.dateFinish|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ order.description }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ order.status }}</td>
+            </tr>
+            <tr>
+                <th>Products</th>
+                <td>{{ order.products }}</td>
+            </tr>
+            <tr>
+                <th>Price_total</th>
+                <td>{{ order.pricetotal }}</td>
+            </tr>
+            <tr>
+                <th>Client</th>
+                <td>{{ order.client }}</td>
+            </tr>
+            <tr>
+                <th>Clientadress</th>
+                <td>{{ order.clientAdress }}</td>
+            </tr>
+            <tr>
+                <th>Man_created</th>
+                <td>{{ order.mancreated }}</td>
+            </tr>
+            <tr>
+                <th>Man_doit</th>
+                <td>{{ order.mandoit }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('order_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('order_edit', { 'id': order.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,7 @@
+client_adress_clientadress:
+    resource: "@ClientAdressBundle/Resources/config/routing/clientadress.yml"
+    prefix:   /clientadress
+
+client_adress_homepage:
+    path:     /
+    defaults: { _controller: ClientAdressBundle:Default:index }

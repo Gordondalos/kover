@@ -1,0 +1,7 @@
+order_order:
+    resource: "@OrderBundle/Resources/config/routing/order.yml"
+    prefix:   /order
+
+order_homepage:
+    path:     /
+    defaults: { _controller: OrderBundle:Default:index }

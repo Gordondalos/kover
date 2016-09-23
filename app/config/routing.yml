@@ -1,3 +1,47 @@
+statistic:
+    resource: "@StatisticBundle/Resources/config/routing.yml"
+    prefix:   /
+
+clients_order_status:
+    resource: "@ClientsOrderStatusBundle/Resources/config/routing.yml"
+    prefix:   /
+
+product_producer_price:
+    resource: "@ProductProducerPriceBundle/Resources/config/routing.yml"
+    prefix:   /
+
+order:
+    resource: "@OrderBundle/Resources/config/routing.yml"
+    prefix:   /
+
+category:
+    resource: "@CategoryBundle/Resources/config/routing.yml"
+    prefix:   /
+
+product_properties_value:
+    resource: "@ProductPropertiesValueBundle/Resources/config/routing.yml"
+    prefix:   /
+
+product_properties:
+    resource: "@ProductPropertiesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+product:
+    resource: "@ProductBundle/Resources/config/routing.yml"
+    prefix:   /
+
+client_adress:
+    resource: "@ClientAdressBundle/Resources/config/routing.yml"
+    prefix:   /
+
+client:
+    resource: "@ClientBundle/Resources/config/routing.yml"
+    prefix:   /
+
+producer:
+    resource: "@ProducerBundle/Resources/config/routing.yml"
+    prefix:   /
+
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /

@@ -1,0 +1,7 @@
+client_client:
+    resource: "@ClientBundle/Resources/config/routing/client.yml"
+    prefix:   /client
+
+client_homepage:
+    path:     /
+    defaults: { _controller: ClientBundle:Default:index }

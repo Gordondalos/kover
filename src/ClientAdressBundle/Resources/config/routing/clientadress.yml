@@ -1,0 +1,24 @@
+clientadress_index:
+    path:     /
+    defaults: { _controller: "ClientAdressBundle:ClientAdress:index" }
+    methods:  GET
+
+clientadress_show:
+    path:     /{id}/show
+    defaults: { _controller: "ClientAdressBundle:ClientAdress:show" }
+    methods:  GET
+
+clientadress_new:
+    path:     /new
+    defaults: { _controller: "ClientAdressBundle:ClientAdress:new" }
+    methods:  [GET, POST]
+
+clientadress_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ClientAdressBundle:ClientAdress:edit" }
+    methods:  [GET, POST]
+
+clientadress_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ClientAdressBundle:ClientAdress:delete" }
+    methods:  DELETE

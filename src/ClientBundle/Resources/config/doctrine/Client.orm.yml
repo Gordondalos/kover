@@ -1,0 +1,23 @@
+ClientBundle\Entity\Client:
+    type:  entity
+    table: client
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        description:
+            type: text
+            nullable: true
+            fixed: false
+        adress:
+            type: string
+            nullable: true
+            fixed: false
+        phone:
+            type: string
+            nullable: true
+            length: 255
+            fixed: false
+    lifecycleCallbacks: {  }

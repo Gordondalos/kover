@@ -1,0 +1,24 @@
+order_index:
+    path:     /
+    defaults: { _controller: "OrderBundle:Order:index" }
+    methods:  GET
+
+order_show:
+    path:     /{id}/show
+    defaults: { _controller: "OrderBundle:Order:show" }
+    methods:  GET
+
+order_new:
+    path:     /new
+    defaults: { _controller: "OrderBundle:Order:new" }
+    methods:  [GET, POST]
+
+order_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "OrderBundle:Order:edit" }
+    methods:  [GET, POST]
+
+order_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "OrderBundle:Order:delete" }
+    methods:  DELETE

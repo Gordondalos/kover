@@ -1,0 +1,42 @@
+OrderBundle\Entity\Order:
+    type:  entity
+    table: clients_order
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+    fields:
+        dateCreated:
+            type: datetime
+            nullable: false
+        dateFinish:
+            type: datetime
+            nullable: false
+        description:
+            type: text
+            nullable: true
+            fixed: false
+        status:
+            type: integer
+            nullable: true
+        products:
+            type: text
+            nullable: true
+        price_total:
+              type: string
+              nullable: true
+        client:
+              type: integer
+              nullable: true
+        clientAdress:
+            type: integer
+            nullable: true
+        man_created:
+              type: integer
+              nullable: false
+        man_doit:
+              type: integer
+              nullable: true
+
+    lifecycleCallbacks: {  }
