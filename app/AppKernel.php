@@ -16,7 +16,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
 	        new FOS\UserBundle\FOSUserBundle(),
-            new AppBundle\AppBundle(),
+
             new UserBundle\UserBundle(),
             new ProducerBundle\ProducerBundle(),
             new ClientBundle\ClientBundle(),
@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new ProductProducerPriceBundle\ProductProducerPriceBundle(),
             new ClientsOrderStatusBundle\ClientsOrderStatusBundle(),
             new StatisticBundle\StatisticBundle(),
+            new AdminBundle\AdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

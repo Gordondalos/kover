@@ -1,6 +1,16 @@
 statistic:
     resource: "@StatisticBundle/Resources/config/routing.yml"
-    prefix:   /statistic
+    prefix:   /
+
+order:
+    resource: "@OrderBundle/Resources/config/routing.yml"
+    prefix:   /order
+
+admin:
+    resource: "@AdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+
 
 clients_order_status:
     resource: "@ClientsOrderStatusBundle/Resources/config/routing.yml"
@@ -9,10 +19,6 @@ clients_order_status:
 product_producer_price:
     resource: "@ProductProducerPriceBundle/Resources/config/routing.yml"
     prefix:   /product_producer_price
-
-order:
-    resource: "@OrderBundle/Resources/config/routing.yml"
-    prefix:   /order
 
 category:
     resource: "@CategoryBundle/Resources/config/routing.yml"
@@ -32,7 +38,7 @@ product:
 
 client_adress:
     resource: "@ClientAdressBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /client_adress
 
 client:
     resource: "@ClientBundle/Resources/config/routing.yml"
@@ -45,10 +51,6 @@ producer:
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
     prefix:   /user
-
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"

@@ -345,12 +345,13 @@ textarea {
   }
 
   /* line 99, ../../vendor/twbs/bootstrap/scss/_print.scss */
-  .table {
+  .table, table {
     border-collapse: collapse !important;
   }
   /* line 102, ../../vendor/twbs/bootstrap/scss/_print.scss */
-  .table td,
-  .table th {
+  .table td, table td,
+  .table th,
+  table th {
     background-color: #fff !important;
   }
 
@@ -2259,29 +2260,30 @@ pre code {
   }
 }
 /* line 5, ../../vendor/twbs/bootstrap/scss/_tables.scss */
-.table {
+.table, table {
   width: 100%;
   max-width: 100%;
   margin-bottom: 1rem;
 }
 /* line 10, ../../vendor/twbs/bootstrap/scss/_tables.scss */
-.table th,
-.table td {
+.table th, table th,
+.table td,
+table td {
   padding: 0.75rem;
   vertical-align: top;
   border-top: 1px solid #eceeef;
 }
 /* line 17, ../../vendor/twbs/bootstrap/scss/_tables.scss */
-.table thead th {
+.table thead th, table thead th {
   vertical-align: bottom;
   border-bottom: 2px solid #eceeef;
 }
 /* line 22, ../../vendor/twbs/bootstrap/scss/_tables.scss */
-.table tbody + tbody {
+.table tbody + tbody, table tbody + tbody {
   border-top: 2px solid #eceeef;
 }
 /* line 26, ../../vendor/twbs/bootstrap/scss/_tables.scss */
-.table .table {
+.table .table, table .table, .table table, table table {
   background-color: #fff;
 }
 
@@ -2414,18 +2416,20 @@ pre code {
 }
 
 /* line 120, ../../vendor/twbs/bootstrap/scss/_tables.scss */
-.table-inverse {
+.table-inverse, table thead {
   color: #eceeef;
   background-color: #373a3c;
 }
 /* line 124, ../../vendor/twbs/bootstrap/scss/_tables.scss */
-.table-inverse th,
+.table-inverse th, table thead th,
 .table-inverse td,
-.table-inverse thead th {
+table thead td,
+.table-inverse thead th,
+table thead thead th {
   border-color: #55595c;
 }
 /* line 130, ../../vendor/twbs/bootstrap/scss/_tables.scss */
-.table-inverse.table-bordered {
+.table-inverse.table-bordered, table thead.table-bordered {
   border: 0;
 }
 
@@ -7252,4 +7256,19 @@ a.text-danger:focus, a.text-danger:hover {
   .hidden-print {
     display: none !important;
   }
+}
+
+/* line 1, ../../src/sass/helper/_helper.sass */
+.bg-dark {
+  background-color: #000;
+  color: #fff;
+}
+
+/* line 5, ../../src/sass/helper/_helper.sass */
+.white {
+  color: #fff;
+}
+/* line 7, ../../src/sass/helper/_helper.sass */
+.white a {
+  color: #fff;
 }

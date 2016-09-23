@@ -1,12 +1,13 @@
-{% extends 'base.html.twig' %}
+{% extends '::base.html.twig' %}
 
 {% block body %}
     <h1>User list</h1>
 
-    <table>
-        <thead>
+    <table class="table">
+        <thead class="thead-inverse">
             <tr>
                 <th>Id</th>
+                <th>Username</th>
                 <th>Description</th>
                 <th>Phone</th>
                 <th>Age</th>
@@ -19,6 +20,7 @@
         {% for user in users %}
             <tr>
                 <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.id }}</a></td>
+                <td><a href="{{ path('user_show', { 'id': user.id }) }}">{{ user.userName }}</a></td>
                 <td>{{ user.description }}</td>
                 <td>{{ user.phone }}</td>
                 <td>{{ user.age }}</td>
@@ -41,7 +43,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('user_new') }}">Create a new entry</a>
+            <a href="{{ path('user_new') }}">{{ 'Create a new entry'|trans }}</a>
         </li>
     </ul>
 {% endblock %}

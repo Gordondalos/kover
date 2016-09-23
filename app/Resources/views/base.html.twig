@@ -1,16 +1,13 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Добро пожаловать{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-        <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
-
-    </head>
+<html lang="en">
+{{ include('base_parts/header.html.twig') }}
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+    {{ include('base_parts/nav.html.twig') }}
+    {% block body %}{% endblock %}
+
+
+
+
+    {{ include('base_parts/footer.html.twig') }}
     </body>
 </html>

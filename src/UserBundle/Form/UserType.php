@@ -20,6 +20,7 @@ class UserType extends AbstractType
             ->add('age')
             ->add('passport')
             ->add('photoUser')
+            ->add('groups')
         ;
     }
     
