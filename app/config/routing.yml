@@ -1,34 +1,34 @@
 statistic:
     resource: "@StatisticBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /statistic
 
 clients_order_status:
     resource: "@ClientsOrderStatusBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /clients_order_status
 
 product_producer_price:
     resource: "@ProductProducerPriceBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /product_producer_price
 
 order:
     resource: "@OrderBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /order
 
 category:
     resource: "@CategoryBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /category
 
 product_properties_value:
     resource: "@ProductPropertiesValueBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /product_properties_value
 
 product_properties:
     resource: "@ProductPropertiesBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /product_properties
 
 product:
     resource: "@ProductBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /product
 
 client_adress:
     resource: "@ClientAdressBundle/Resources/config/routing.yml"
@@ -36,15 +36,15 @@ client_adress:
 
 client:
     resource: "@ClientBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /client_adress
 
 producer:
     resource: "@ProducerBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /producer
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /user
 
 app:
     resource: "@AppBundle/Controller/"
@@ -52,3 +52,7 @@ app:
 
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_group:
+    resource: "@FOSUserBundle/Resources/config/routing/group.xml"
+    prefix: /group

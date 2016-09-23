@@ -1,0 +1,24 @@
+group_index:
+    path:     /
+    defaults: { _controller: "UserBundle:Group:index" }
+    methods:  GET
+
+group_show:
+    path:     /{id}/show
+    defaults: { _controller: "UserBundle:Group:show" }
+    methods:  GET
+
+group_new:
+    path:     /new
+    defaults: { _controller: "UserBundle:Group:new" }
+    methods:  [GET, POST]
+
+group_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "UserBundle:Group:edit" }
+    methods:  [GET, POST]
+
+group_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "UserBundle:Group:delete" }
+    methods:  DELETE
