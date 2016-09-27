@@ -19,13 +19,5 @@ ClientBundle\Entity\Client:
             length: 255
             fixed: false
 
-    oneToMany:
-        adress:
-            targetEntity: ClientAdressBundle\Entity\ClientAdress
-            mappedBy: ClientAdress
-
-
-
-
 
     lifecycleCallbacks: {  }
