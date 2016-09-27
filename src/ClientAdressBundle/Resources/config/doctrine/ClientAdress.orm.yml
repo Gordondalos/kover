@@ -13,15 +13,15 @@ ClientAdressBundle\Entity\ClientAdress:
             fixed: false
         adress:
             type: text
-            nullable: true
+            nullable: false
             fixed: false
         phone:
             type: string
             nullable: true
             length: 255
-            fixed: false
-        client:
-            type: integer
-            nullable: false
+    manyToOne:
+          client:
+              targetEntity: ClientBundle\Entity\Client
+
 
     lifecycleCallbacks: {  }

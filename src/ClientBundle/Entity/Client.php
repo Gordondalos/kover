@@ -15,18 +15,22 @@ class Client
     /**
      * @var string
      */
-    private $description;
+    private $name;
 
     /**
      * @var string
      */
-    private $adress;
+    private $description;
 
     /**
      * @var string
      */
     private $phone;
 
+    /**
+     * @var \ClientAdressBundle\Entity\ClientAdress
+     */
+    private $adress;
 
     /**
      * Get id
@@ -36,6 +40,30 @@ class Client
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Client
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 
     /**
@@ -63,30 +91,6 @@ class Client
     }
 
     /**
-     * Set adress
-     *
-     * @param string $adress
-     *
-     * @return Client
-     */
-    public function setAdress($adress)
-    {
-        $this->adress = $adress;
-
-        return $this;
-    }
-
-    /**
-     * Get adress
-     *
-     * @return string
-     */
-    public function getAdress()
-    {
-        return $this->adress;
-    }
-
-    /**
      * Set phone
      *
      * @param string $phone
@@ -109,5 +113,59 @@ class Client
     {
         return $this->phone;
     }
-}
 
+    /**
+     * Set adress
+     *
+     * @param \ClientAdressBundle\Entity\ClientAdress $adress
+     *
+     * @return Client
+     */
+    public function setAdress(\ClientAdressBundle\Entity\ClientAdress $adress = null)
+    {
+        $this->adress = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Get adress
+     *
+     * @return \ClientAdressBundle\Entity\ClientAdress
+     */
+    public function getAdress()
+    {
+        return $this->adress;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->adress = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add adress
+     *
+     * @param \ClientAdressBundle\Entity\ClientAdress $adress
+     *
+     * @return Client
+     */
+    public function addAdress(\ClientAdressBundle\Entity\ClientAdress $adress)
+    {
+        $this->adress[] = $adress;
+
+        return $this;
+    }
+
+    /**
+     * Remove adress
+     *
+     * @param \ClientAdressBundle\Entity\ClientAdress $adress
+     */
+    public function removeAdress(\ClientAdressBundle\Entity\ClientAdress $adress)
+    {
+        $this->adress->removeElement($adress);
+    }
+}

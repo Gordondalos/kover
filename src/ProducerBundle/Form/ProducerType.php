@@ -17,6 +17,7 @@ class ProducerType extends AbstractType
         $builder
             ->add('description')
             ->add('adress')
+            ->add('title')
             ->add('phone')
             ->add('logo')
         ;

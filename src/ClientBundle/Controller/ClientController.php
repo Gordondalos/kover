@@ -8,6 +8,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use ClientBundle\Entity\Client;
 use ClientBundle\Form\ClientType;
 
+use ClientAdressBundle\Entity\ClientAdress;
+
 /**
  * Client controller.
  *
@@ -60,9 +62,16 @@ class ClientController extends Controller
     public function showAction(Client $client)
     {
         $deleteForm = $this->createDeleteForm($client);
+	    $em = $this->getDoctrine()->getManager();
+
+	     $clientAdress = $em->getRepository('ClientAdressBundle:ClientAdress')->findBy(array(
+	    	'client' => $client,
+	    ));
+
 
         return $this->render('client/show.html.twig', array(
             'client' => $client,
+            'clientAdress' => $clientAdress,
             'delete_form' => $deleteForm->createView(),
         ));
     }

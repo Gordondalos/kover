@@ -2482,7 +2482,7 @@ table thead thead th {
 }
 
 /* line 7, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-.form-control {
+.form-control, input, textarea {
   display: block;
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -2496,29 +2496,29 @@ table thead thead th {
   border-radius: 0.25rem;
 }
 /* line 27, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-.form-control::-ms-expand {
+.form-control::-ms-expand, input::-ms-expand, textarea::-ms-expand {
   background-color: transparent;
   border: 0;
 }
 /* line 52, ../../vendor/twbs/bootstrap/scss/mixins/_forms.scss */
-.form-control:focus {
+.form-control:focus, input:focus, textarea:focus {
   color: #55595c;
   background-color: #fff;
   border-color: #66afe9;
   outline: none;
 }
 /* line 36, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-.form-control::placeholder {
+.form-control::placeholder, input::placeholder, textarea::placeholder {
   color: #999;
   opacity: 1;
 }
 /* line 47, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-.form-control:disabled, .form-control[readonly] {
+.form-control:disabled, input:disabled, textarea:disabled, .form-control[readonly], input[readonly], textarea[readonly] {
   background-color: #eceeef;
   opacity: 1;
 }
 /* line 54, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-.form-control:disabled {
+.form-control:disabled, input:disabled, textarea:disabled {
   cursor: not-allowed;
 }
 
@@ -2575,9 +2575,9 @@ select.form-control:focus::-ms-value {
   margin-bottom: 0;
 }
 /* line 134, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-.form-control-static.form-control-sm, .input-group-sm > .form-control-static.form-control,
+.form-control-static.form-control-sm, .input-group-sm > .form-control-static.form-control, .input-group-sm > input.form-control-static, .input-group-sm > textarea.form-control-static,
 .input-group-sm > .form-control-static.input-group-addon,
-.input-group-sm > .input-group-btn > .form-control-static.btn, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control,
+.input-group-sm > .input-group-btn > .form-control-static.btn, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control, .input-group-lg > input.form-control-static, .input-group-lg > textarea.form-control-static,
 .input-group-lg > .form-control-static.input-group-addon,
 .input-group-lg > .input-group-btn > .form-control-static.btn {
   padding-right: 0;
@@ -2585,7 +2585,7 @@ select.form-control:focus::-ms-value {
 }
 
 /* line 150, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-.form-control-sm, .input-group-sm > .form-control,
+.form-control-sm, .input-group-sm > .form-control, .input-group-sm > input, .input-group-sm > textarea,
 .input-group-sm > .input-group-addon,
 .input-group-sm > .input-group-btn > .btn {
   padding: 0.25rem 0.5rem;
@@ -2601,7 +2601,7 @@ select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.for
 }
 
 /* line 162, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-.form-control-lg, .input-group-lg > .form-control,
+.form-control-lg, .input-group-lg > .form-control, .input-group-lg > input, .input-group-lg > textarea,
 .input-group-lg > .input-group-addon,
 .input-group-lg > .input-group-btn > .btn {
   padding: 0.75rem 1.5rem;
@@ -2703,7 +2703,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   color: #5cb85c;
 }
 /* line 16, ../../vendor/twbs/bootstrap/scss/mixins/_forms.scss */
-.has-success .form-control {
+.has-success .form-control, .has-success input, .has-success textarea {
   border-color: #5cb85c;
 }
 /* line 28, ../../vendor/twbs/bootstrap/scss/mixins/_forms.scss */
@@ -2730,7 +2730,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   color: #f0ad4e;
 }
 /* line 16, ../../vendor/twbs/bootstrap/scss/mixins/_forms.scss */
-.has-warning .form-control {
+.has-warning .form-control, .has-warning input, .has-warning textarea {
   border-color: #f0ad4e;
 }
 /* line 28, ../../vendor/twbs/bootstrap/scss/mixins/_forms.scss */
@@ -2757,7 +2757,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   color: #d9534f;
 }
 /* line 16, ../../vendor/twbs/bootstrap/scss/mixins/_forms.scss */
-.has-danger .form-control {
+.has-danger .form-control, .has-danger input, .has-danger textarea {
   border-color: #d9534f;
 }
 /* line 28, ../../vendor/twbs/bootstrap/scss/mixins/_forms.scss */
@@ -2783,7 +2783,7 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
     vertical-align: middle;
   }
   /* line 311, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-  .form-inline .form-control {
+  .form-inline .form-control, .form-inline input, .form-inline textarea {
     display: inline-block;
     width: auto;
     vertical-align: middle;
@@ -2800,11 +2800,13 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   /* line 326, ../../vendor/twbs/bootstrap/scss/_forms.scss */
   .form-inline .input-group .input-group-addon,
   .form-inline .input-group .input-group-btn,
-  .form-inline .input-group .form-control {
+  .form-inline .input-group .form-control,
+  .form-inline .input-group input,
+  .form-inline .input-group textarea {
     width: auto;
   }
   /* line 334, ../../vendor/twbs/bootstrap/scss/_forms.scss */
-  .form-inline .input-group > .form-control {
+  .form-inline .input-group > .form-control, .form-inline .input-group > input, .form-inline .input-group > textarea {
     width: 100%;
   }
   /* line 338, ../../vendor/twbs/bootstrap/scss/_forms.scss */
@@ -3838,7 +3840,7 @@ input[type="button"].btn-block {
   border-collapse: separate;
 }
 /* line 18, ../../vendor/twbs/bootstrap/scss/_input-group.scss */
-.input-group .form-control {
+.input-group .form-control, .input-group input, .input-group textarea {
   position: relative;
   z-index: 2;
   float: left;
@@ -3846,20 +3848,24 @@ input[type="button"].btn-block {
   margin-bottom: 0;
 }
 /* line 54, ../../vendor/twbs/bootstrap/scss/mixins/_hover.scss */
-.input-group .form-control:focus, .input-group .form-control:active, .input-group .form-control:hover {
+.input-group .form-control:focus, .input-group input:focus, .input-group textarea:focus, .input-group .form-control:active, .input-group input:active, .input-group textarea:active, .input-group .form-control:hover, .input-group input:hover, .input-group textarea:hover {
   z-index: 3;
 }
 
 /* line 40, ../../vendor/twbs/bootstrap/scss/_input-group.scss */
 .input-group-addon,
 .input-group-btn,
-.input-group .form-control {
+.input-group .form-control,
+.input-group input,
+.input-group textarea {
   display: table-cell;
 }
 /* line 47, ../../vendor/twbs/bootstrap/scss/_input-group.scss */
 .input-group-addon:not(:first-child):not(:last-child),
 .input-group-btn:not(:first-child):not(:last-child),
-.input-group .form-control:not(:first-child):not(:last-child) {
+.input-group .form-control:not(:first-child):not(:last-child),
+.input-group input:not(:first-child):not(:last-child),
+.input-group textarea:not(:first-child):not(:last-child) {
   border-radius: 0;
 }
 
@@ -3907,7 +3913,7 @@ input[type="button"].btn-block {
 }
 
 /* line 121, ../../vendor/twbs/bootstrap/scss/_input-group.scss */
-.input-group .form-control:not(:last-child),
+.input-group .form-control:not(:last-child), .input-group input:not(:last-child), .input-group textarea:not(:last-child),
 .input-group-addon:not(:last-child),
 .input-group-btn:not(:last-child) > .btn,
 .input-group-btn:not(:last-child) > .btn-group > .btn,
@@ -3924,7 +3930,7 @@ input[type="button"].btn-block {
 }
 
 /* line 133, ../../vendor/twbs/bootstrap/scss/_input-group.scss */
-.input-group .form-control:not(:first-child),
+.input-group .form-control:not(:first-child), .input-group input:not(:first-child), .input-group textarea:not(:first-child),
 .input-group-addon:not(:first-child),
 .input-group-btn:not(:first-child) > .btn,
 .input-group-btn:not(:first-child) > .btn-group > .btn,
@@ -3936,7 +3942,7 @@ input[type="button"].btn-block {
 }
 
 /* line 142, ../../vendor/twbs/bootstrap/scss/_input-group.scss */
-.form-control + .input-group-addon:not(:first-child) {
+.form-control + .input-group-addon:not(:first-child), input + .input-group-addon:not(:first-child), textarea + .input-group-addon:not(:first-child) {
   border-left: 0;
 }
 

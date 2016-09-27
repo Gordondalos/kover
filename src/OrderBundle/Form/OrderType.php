@@ -2,9 +2,12 @@
 
 namespace OrderBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class OrderType extends AbstractType
 {
@@ -15,16 +18,21 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateCreated', 'datetime')
-            ->add('dateFinish', 'datetime')
-            ->add('description')
-            ->add('status')
+            ->add('dateCreated', DateTimeType::class)
+            ->add('dateFinish', DateTimeType::class)
+
+            ->add('status', EntityType::class , array(
+	            'class' => 'ClientsOrderStatusBundle:ClientsOrderStatus',
+	            'choice_label' => 'title',
+            ))
             ->add('products')
             ->add('price_total')
             ->add('client')
             ->add('clientAdress')
             ->add('man_created')
             ->add('man_doit')
+	        ->add('description')
+
         ;
     }
     

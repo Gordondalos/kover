@@ -9,6 +9,7 @@
                 <th>Id</th>
                 <th>Description</th>
                 <th>Adress</th>
+                <th>Title</th>
                 <th>Phone</th>
                 <th>Logo</th>
                 <th>Actions</th>
@@ -20,6 +21,7 @@
                 <td><a href="{{ path('producer_show', { 'id': producer.id }) }}">{{ producer.id }}</a></td>
                 <td>{{ producer.description }}</td>
                 <td>{{ producer.adress }}</td>
+                <td>{{ producer.title }}</td>
                 <td>{{ producer.phone }}</td>
                 <td>{{ producer.logo }}</td>
                 <td>
@@ -39,7 +41,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('producer_new') }}">{{ 'Create a new entry'|trans }}</a>
+            <a href="{{ path('producer_new') }}">Create a new entry</a>
         </li>
     </ul>
 {% endblock %}

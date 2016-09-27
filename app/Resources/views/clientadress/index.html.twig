@@ -12,6 +12,7 @@
                 <th>Phone</th>
                 <th>Client</th>
                 <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -21,7 +22,7 @@
                 <td>{{ clientAdress.description }}</td>
                 <td>{{ clientAdress.adress }}</td>
                 <td>{{ clientAdress.phone }}</td>
-                <td>{{ clientAdress.client }}</td>
+                <td>{{ clientAdress.client.name }}</td>
                 <td>
                     <ul>
                         <li>
@@ -39,7 +40,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('clientadress_new') }}">{{ 'Create a new entry'|trans }}</a>
+            <a href="{{ path('clientadress_new') }}">Create a new entry</a>
         </li>
     </ul>
 {% endblock %}

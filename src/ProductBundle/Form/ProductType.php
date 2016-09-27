@@ -2,6 +2,7 @@
 
 namespace ProductBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,9 +19,16 @@ class ProductType extends AbstractType
             ->add('properties')
             ->add('description')
             ->add('title')
-            ->add('producer')
-            ->add('category')
             ->add('photoProduct')
+	        ->add('category', EntityType::class , array(
+		        'class' => 'CategoryBundle\Entity\Category',
+		        'choice_label' => 'title',
+	        ))
+	        ->add('producer', EntityType::class , array(
+		        'class' => 'ProducerBundle\Entity\Producer',
+		        'choice_label' => 'title',
+	        ))
+
         ;
     }
     

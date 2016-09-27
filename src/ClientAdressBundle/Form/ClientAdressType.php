@@ -2,6 +2,7 @@
 
 namespace ClientAdressBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -18,7 +19,10 @@ class ClientAdressType extends AbstractType
             ->add('description')
             ->add('adress')
             ->add('phone')
-            ->add('client')
+	        ->add('client', EntityType::class , array(
+		        'class' => 'ClientBundle\Entity\Client',
+		        'choice_label' => 'name',
+	        ))
         ;
     }
     

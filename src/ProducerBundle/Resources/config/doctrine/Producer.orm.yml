@@ -15,6 +15,9 @@ ProducerBundle\Entity\Producer:
             type: text
             nullable: true
             fixed: false
+        title:
+              type: string
+              length: 255
         phone:
             type: string
             nullable: true

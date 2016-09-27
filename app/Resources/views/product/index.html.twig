@@ -10,9 +10,9 @@
                 <th>Properties</th>
                 <th>Description</th>
                 <th>Title</th>
-                <th>Producer</th>
-                <th>Category</th>
                 <th>Photoproduct</th>
+                <th>Category</th>
+                <th>Producer</th>
                 <th>Actions</th>
             </tr>
         </thead>
@@ -23,9 +23,9 @@
                 <td>{{ product.properties }}</td>
                 <td>{{ product.description }}</td>
                 <td>{{ product.title }}</td>
-                <td>{{ product.producer }}</td>
-                <td>{{ product.category }}</td>
                 <td>{{ product.photoProduct }}</td>
+                <td>{{ product.category.title }}</td>
+                <td>{{ product.producer.title }}</td>
                 <td>
                     <ul>
                         <li>
@@ -43,7 +43,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('product_new') }}">{{ 'Create a new entry'|trans }}</a>
+            <a href="{{ path('product_new') }}">Create a new entry</a>
         </li>
     </ul>
 {% endblock %}

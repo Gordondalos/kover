@@ -27,11 +27,6 @@ class ClientAdress
      */
     private $phone;
 
-    /**
-     * @var integer
-     */
-    private $client;
-
 
     /**
      * Get id
@@ -114,15 +109,20 @@ class ClientAdress
     {
         return $this->phone;
     }
+    /**
+     * @var \ClientBundle\Entity\Client
+     */
+    private $client;
+
 
     /**
      * Set client
      *
-     * @param integer $client
+     * @param \ClientBundle\Entity\Client $client
      *
      * @return ClientAdress
      */
-    public function setClient($client)
+    public function setClient(\ClientBundle\Entity\Client $client = null)
     {
         $this->client = $client;
 
@@ -132,11 +132,10 @@ class ClientAdress
     /**
      * Get client
      *
-     * @return integer
+     * @return \ClientBundle\Entity\Client
      */
     public function getClient()
     {
         return $this->client;
     }
 }
-

@@ -62,6 +62,11 @@ class Order
      */
     private $man_doit;
 
+    /**
+     * @var \ClientsOrderStatusBundle\Entity\ClientsOrderStatus
+     */
+    private $clientsOrderStatus;
+
 
     /**
      * Get id
@@ -311,6 +316,30 @@ class Order
     public function getManDoit()
     {
         return $this->man_doit;
+    }
+
+    /**
+     * Set clientsOrderStatus
+     *
+     * @param \ClientsOrderStatusBundle\Entity\ClientsOrderStatus $clientsOrderStatus
+     *
+     * @return Order
+     */
+    public function setClientsOrderStatus(\ClientsOrderStatusBundle\Entity\ClientsOrderStatus $clientsOrderStatus = null)
+    {
+        $this->clientsOrderStatus = $clientsOrderStatus;
+
+        return $this;
+    }
+
+    /**
+     * Get clientsOrderStatus
+     *
+     * @return \ClientsOrderStatusBundle\Entity\ClientsOrderStatus
+     */
+    public function getClientsOrderStatus()
+    {
+        return $this->clientsOrderStatus;
     }
 }
 

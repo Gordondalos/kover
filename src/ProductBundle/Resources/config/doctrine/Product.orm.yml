@@ -20,19 +20,17 @@ ProductBundle\Entity\Product:
             nullable: true
             length: 255
             fixed: false
-        producer:
-            type: string
-            nullable: true
-            length: 255
-            fixed: false
-        category:
-            type: string
-            nullable: true
-            length: 255
-            fixed: false
         photoProduct:
             type: text
             nullable: true
+
+    oneToOne:
+        category:
+            targetEntity: CategoryBundle\Entity\Category
+
+    manyToOne:
+        producer:
+            targetEntity: ProducerBundle\Entity\Producer
 
 
 

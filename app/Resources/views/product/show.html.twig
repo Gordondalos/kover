@@ -22,17 +22,21 @@
                 <td>{{ product.title }}</td>
             </tr>
             <tr>
-                <th>Producer</th>
-                <td>{{ product.producer }}</td>
-            </tr>
-            <tr>
-                <th>Category</th>
-                <td>{{ product.category }}</td>
-            </tr>
-            <tr>
                 <th>Photoproduct</th>
                 <td>{{ product.photoProduct }}</td>
             </tr>
+            <tr>
+                <th>Category</th>
+                <td>{{ product.category.title }}</td>
+            </tr>
+
+            <tr>
+                <th>Producer</th>
+                <td>{{ product.producer.title }}</td>
+            </tr>
+
+
+
         </tbody>
     </table>
 

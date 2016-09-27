@@ -7,8 +7,8 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Name</th>
                 <th>Description</th>
-                <th>Adress</th>
                 <th>Phone</th>
                 <th>Actions</th>
             </tr>
@@ -17,8 +17,8 @@
         {% for client in clients %}
             <tr>
                 <td><a href="{{ path('client_show', { 'id': client.id }) }}">{{ client.id }}</a></td>
+                <td>{{ client.name }}</td>
                 <td>{{ client.description }}</td>
-                <td>{{ client.adress }}</td>
                 <td>{{ client.phone }}</td>
                 <td>
                     <ul>
@@ -37,7 +37,7 @@
 
     <ul>
         <li>
-            <a href="{{ path('client_new') }}">{{ 'Create a new entry'|trans }}</a>
+            <a href="{{ path('client_new') }}">Create a new entry</a>
         </li>
     </ul>
 {% endblock %}
