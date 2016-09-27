@@ -342,4 +342,3 @@ class Order
         return $this->clientsOrderStatus;
     }
 }
-

@@ -39,14 +39,9 @@ OrderBundle\Entity\Order:
               type: integer
               nullable: true
 
-    manyToOne:
+    oneToOne:
         clientsOrderStatus:
             targetEntity: ClientsOrderStatusBundle\Entity\ClientsOrderStatus
-            inversedBy: Order
-            joinColumn:
-                name: id
-                referencedColumnName: id
-
 
 
 
