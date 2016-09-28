@@ -30,6 +30,7 @@ class AppKernel extends Kernel
             new ClientsOrderStatusBundle\ClientsOrderStatusBundle(),
             new StatisticBundle\StatisticBundle(),
             new AdminBundle\AdminBundle(),
+            new ClientPhoneBundle\ClientPhoneBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

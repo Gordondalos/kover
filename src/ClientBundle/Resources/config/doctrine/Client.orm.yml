@@ -13,11 +13,6 @@ ClientBundle\Entity\Client:
             type: text
             nullable: true
             fixed: false
-        phone:
-            type: string
-            nullable: true
-            length: 255
-            fixed: false
 
 
     lifecycleCallbacks: {  }

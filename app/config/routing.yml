@@ -12,7 +12,6 @@ admin:
     prefix:   /admin
 
 
-
 clients_order_status:
     resource: "@ClientsOrderStatusBundle/Resources/config/routing.yml"
     prefix:   /clients_order_status
@@ -61,3 +60,6 @@ fos_user_group:
     prefix: /group
 
 
+clinet_phone:
+    resource: "@ClientPhoneBundle/Resources/config/routing.yml"
+    prefix:   /clinet_phone

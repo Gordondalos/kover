@@ -1,0 +1,24 @@
+clientphone_index:
+    path:     /
+    defaults: { _controller: "ClientPhoneBundle:ClientPhone:index" }
+    methods:  GET
+
+clientphone_show:
+    path:     /{id}/show
+    defaults: { _controller: "ClientPhoneBundle:ClientPhone:show" }
+    methods:  GET
+
+clientphone_new:
+    path:     /new
+    defaults: { _controller: "ClientPhoneBundle:ClientPhone:new" }
+    methods:  [GET, POST]
+
+clientphone_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ClientPhoneBundle:ClientPhone:edit" }
+    methods:  [GET, POST]
+
+clientphone_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ClientPhoneBundle:ClientPhone:delete" }
+    methods:  DELETE

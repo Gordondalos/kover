@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>ClientPhone list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Phone</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for clientPhone in clientPhones %}
+            <tr>
+                <td><a href="{{ path('clientphone_show', { 'id': clientPhone.id }) }}">{{ clientPhone.id }}</a></td>
+                <td>{{ clientPhone.phone }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('clientphone_show', { 'id': clientPhone.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('clientphone_edit', { 'id': clientPhone.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('clientphone_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

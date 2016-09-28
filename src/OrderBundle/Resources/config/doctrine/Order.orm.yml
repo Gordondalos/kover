@@ -24,20 +24,28 @@ OrderBundle\Entity\Order:
             type: text
             nullable: true
         price_total:
-              type: string
+              type: integer
               nullable: true
         client:
-              type: integer
+              type: string
               nullable: true
         clientAdress:
+            type: string
+            nullable: true
+        phone:
+            type: string
+            nullable: true
+        price_deliver:
             type: integer
             nullable: true
-        man_created:
-              type: integer
-              nullable: false
+
+    oneToOne:
         man_doit:
-              type: integer
-              nullable: true
+            targetEntity: UserBundle\Entity\User
+
+    man_created:
+            man_doit:
+                targetEntity: UserBundle\Entity\User
 
     oneToOne:
         clientsOrderStatus:

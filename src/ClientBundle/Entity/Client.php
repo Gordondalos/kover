@@ -22,11 +22,6 @@ class Client
      */
     private $description;
 
-    /**
-     * @var string
-     */
-    private $phone;
-
 
     /**
      * Get id
@@ -84,30 +79,6 @@ class Client
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Set phone
-     *
-     * @param string $phone
-     *
-     * @return Client
-     */
-    public function setPhone($phone)
-    {
-        $this->phone = $phone;
-
-        return $this;
-    }
-
-    /**
-     * Get phone
-     *
-     * @return string
-     */
-    public function getPhone()
-    {
-        return $this->phone;
     }
 }
 

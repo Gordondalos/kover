@@ -341,4 +341,62 @@ class Order
     {
         return $this->clientsOrderStatus;
     }
+    /**
+     * @var integer
+     */
+    private $price_deliver;
+
+
+    /**
+     * Set priceDeliver
+     *
+     * @param integer $priceDeliver
+     *
+     * @return Order
+     */
+    public function setPriceDeliver($priceDeliver)
+    {
+        $this->price_deliver = $priceDeliver;
+
+        return $this;
+    }
+
+    /**
+     * Get priceDeliver
+     *
+     * @return integer
+     */
+    public function getPriceDeliver()
+    {
+        return $this->price_deliver;
+    }
+    /**
+     * @var string
+     */
+    private $phone;
+
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     *
+     * @return Order
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
 }

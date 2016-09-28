@@ -1,0 +1,7 @@
+client_phone_clientphone:
+    resource: "@ClientPhoneBundle/Resources/config/routing/clientphone.yml"
+    prefix:   /clientphone
+
+clinet_phone_homepage:
+    path:     /
+    defaults: { _controller: ClinetPhoneBundle:Default:index }

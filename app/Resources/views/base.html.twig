@@ -3,7 +3,11 @@
 {{ include('base_parts/header.html.twig') }}
     <body>
     {{ include('base_parts/nav.html.twig') }}
-    {% block body %}{% endblock %}
+
+   <div class="container-fluid">
+       {% block body %}{% endblock %}
+   </div>
+
 
 
 

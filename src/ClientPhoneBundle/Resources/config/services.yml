@@ -1,0 +1,4 @@
+services:
+#    clinet_phone.example:
+#        class: ClinetPhoneBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

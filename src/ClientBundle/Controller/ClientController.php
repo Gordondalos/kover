@@ -26,6 +26,7 @@ class ClientController extends Controller
 
         $clients = $em->getRepository('ClientBundle:Client')->findAll();
 
+
         return $this->render('client/index.html.twig', array(
             'clients' => $clients,
         ));
@@ -64,14 +65,18 @@ class ClientController extends Controller
         $deleteForm = $this->createDeleteForm($client);
 	    $em = $this->getDoctrine()->getManager();
 
-	     $clientAdress = $em->getRepository('ClientAdressBundle:ClientAdress')->findBy(array(
+	    $clientAdress = $em->getRepository('ClientAdressBundle:ClientAdress')->findBy(array(
 	    	'client' => $client,
+	    ));
+	    $clientPhone = $em->getRepository('ClientPhoneBundle:ClientPhone')->findBy(array(
+		    'client' => $client,
 	    ));
 
 
         return $this->render('client/show.html.twig', array(
             'client' => $client,
             'clientAdress' => $clientAdress,
+            'clientPhone' => $clientPhone,
             'delete_form' => $deleteForm->createView(),
         ));
     }

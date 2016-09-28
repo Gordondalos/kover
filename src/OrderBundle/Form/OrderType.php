@@ -18,21 +18,30 @@ class OrderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('dateCreated', DateTimeType::class)
-            ->add('dateFinish', DateTimeType::class)
+//            ->add('dateCreated', DateTimeType::class)
+//            ->add('dateFinish', DateTimeType::class)
 
-            ->add('status', EntityType::class , array(
-	            'class' => 'ClientsOrderStatusBundle:ClientsOrderStatus',
-	            'choice_label' => 'title',
-            ))
+//            ->add('status', EntityType::class , array(
+//	            'class' => 'ClientsOrderStatusBundle:ClientsOrderStatus',
+//	            'choice_label' => 'title',
+//            ))
             ->add('products')
-            ->add('price_total')
-            ->add('client')
-            ->add('clientAdress')
-            ->add('man_created')
-            ->add('man_doit')
-	        ->add('description')
 
+            ->add('client')
+            ->add('phone')
+            ->add('clientAdress')
+//            ->add('man_created')
+
+
+
+	        ->add('price_deliver')
+//	        ->add('price_total')
+	        ->add('description')
+	        ->add('man_doit', EntityType::class , array(
+		        'class' => 'UserBundle\Entity\User',
+		        'choice_label' => 'username',
+		        'label'=> 'Водитель'
+	        ))
         ;
     }
     

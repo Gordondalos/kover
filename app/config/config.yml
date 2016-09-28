@@ -15,6 +15,7 @@ imports:
     - { resource: "@ClientsOrderStatusBundle/Resources/config/services.yml" }
     - { resource: "@StatisticBundle/Resources/config/services.yml" }
     - { resource: "@AdminBundle/Resources/config/services.yml" }
+    - { resource: "@ClientPhoneBundle/Resources/config/services.yml" }
 
 
 # Put parameters here that don't need to change on each machine where the app is deployed
