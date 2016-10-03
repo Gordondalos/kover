@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 
 
-export class AppComponent { }
+export class AppComponent implements OnInit{
+
+    phone: string;
+
+
+    ngOnInit(){
+        this.phone = phones;
+        console.log(this.phone);
+    }
+
+}

@@ -7,6 +7,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use OrderBundle\Entity\Order;
 use OrderBundle\Form\OrderType;
+use ClientPhoneBundle\Entity\ClientPhone;
 
 /**
  * Order controller.
@@ -47,8 +48,27 @@ class OrderController extends Controller
             return $this->redirectToRoute('order_show', array('id' => $order->getId()));
         }
 
+
+	    $em = $this->getDoctrine()->getManager();
+
+	    $phones_arr = $em->getRepository('ClientPhoneBundle:ClientPhone')->findAll();
+
+	    $phones = array();
+	    foreach ($phones_arr as $key=>$val){
+		    $phones[$key]['id'] = $val->getId();
+		    $phones[$key]['phone'] = $val->getPhone();
+		    $phones[$key]['client_id'] = $val->getClient()->getId();
+		    $phones[$key]['client_name'] = $val->getClient()->getName();
+		    $phones[$key]['client_description'] = $val->getClient()->getDescription();
+	    }
+
+	    echo '<pre>';
+	    print_r($phones);
+	    echo '</pre>';
+
         return $this->render('order/new.html.twig', array(
             'order' => $order,
+	        'phones' => $phones,
             'form' => $form->createView(),
         ));
     }
