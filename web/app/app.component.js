@@ -12,8 +12,8 @@ var core_1 = require('@angular/core');
 var data_service_1 = require('./data.service');
 // import { Select2Component } from 'ng2-select2/ng2-select2';
 var AppComponent = (function () {
-    function AppComponent(dataServices) {
-        this.dataServices = dataServices;
+    function AppComponent(data) {
+        this.data = data;
         this.selected = "";
         // function for result template
         this.templateResult = function (state) {
@@ -46,7 +46,7 @@ var AppComponent = (function () {
             phone_arr[index]['id'] = phone.client_id;
             phone_arr[index]['text'] = phone.phone;
         });
-        this.dataServices.setComplexList(phone_arr);
+        this.data.setComplexList(phones);
     };
     AppComponent = __decorate([
         core_1.Component({

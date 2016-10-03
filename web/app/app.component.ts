@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
     private startValue: string;
     private selected: string ="";
 
-    constructor(private dataServices: DataService) { }
+    constructor(private data: DataService) { }
 
     // function for result template
     public templateResult: Select2TemplateFunction = (state: Select2OptionData): JQuery | string => {
@@ -61,7 +61,7 @@ export class AppComponent implements OnInit{
            phone_arr[index]['id'] = phone.client_id;
            phone_arr[index]['text'] = phone.phone;
         });
-        this.dataServices.setComplexList(phone_arr);
+        this.data.setComplexList(phones);
 
     }
 
