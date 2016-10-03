@@ -2,17 +2,10 @@
 
 {% block body %}
 
-    <script>
-        var phones = {{ phones|json_encode()|raw }};
-    </script>
 
-    {% for phone in phones %}
 
-        <span>{{ phone.phone }}</span>
-        <span>...{{ phone.id }}</span>
+    <input class="phones" type="hidden" value='{{ phones|json_encode()|raw }}'>
 
-    {% endfor %}
-
-    <my-app></my-app>
+    <my-app> </my-app>
 
 {% endblock %}

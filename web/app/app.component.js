@@ -9,19 +9,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var data_service_1 = require('./data.service');
+// import { Select2Component } from 'ng2-select2/ng2-select2';
 var AppComponent = (function () {
-    function AppComponent() {
+    function AppComponent(data) {
+        this.data = data;
+        this.startValue = 'car3';
+        this.selected = "";
+        // function for result template
+        this.templateResult = function (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            var image = '<span class="image"></span>';
+            if (state.additional.image) {
+                image = '<span class="image"><img src="' + state.additional.image + '"</span>';
+            }
+            return $('<span><b>' + state.additional.winner + '.</b> ' + image + ' ' + state.text + '</span>');
+        };
+        // function for selection tempalte
+        this.templateSelection = function (state) {
+            if (!state.id) {
+                return state.text;
+            }
+            return jQuery('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
+        };
     }
+    AppComponent.prototype.changed = function (e) {
+        this.selected = e.value;
+    };
     AppComponent.prototype.ngOnInit = function () {
-        this.phone = phones;
-        console.log(this.phone);
+        this.phones = JSON.parse($('.phones').val());
+        console.log(this.phones);
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            templateUrl: '/app/angular_view/app_view/app.component.view.html'
+            templateUrl: '/app/angular_view/app_view/app.component.view.html',
+            providers: [data_service_1.DataService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [data_service_1.DataService])
     ], AppComponent);
     return AppComponent;
 }());
