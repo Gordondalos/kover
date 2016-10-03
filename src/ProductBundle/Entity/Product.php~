@@ -35,8 +35,20 @@ class Product
     /**
      * @var string
      */
+    private $photoProduct;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
     private $category;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->category = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -145,13 +157,71 @@ class Product
     }
 
     /**
-     * Set category
+     * Set photoProduct
      *
-     * @param string $category
+     * @param string $photoProduct
      *
      * @return Product
      */
-    public function setCategory($category)
+    public function setPhotoProduct($photoProduct)
+    {
+        $this->photoProduct = $photoProduct;
+
+        return $this;
+    }
+
+    /**
+     * Get photoProduct
+     *
+     * @return string
+     */
+    public function getPhotoProduct()
+    {
+        return $this->photoProduct;
+    }
+
+    /**
+     * Add category
+     *
+     * @param \CategoryBundle\Entity\Category $category
+     *
+     * @return Product
+     */
+    public function addCategory(\CategoryBundle\Entity\Category $category)
+    {
+        $this->category[] = $category;
+
+        return $this;
+    }
+
+    /**
+     * Remove category
+     *
+     * @param \CategoryBundle\Entity\Category $category
+     */
+    public function removeCategory(\CategoryBundle\Entity\Category $category)
+    {
+        $this->category->removeElement($category);
+    }
+
+    /**
+     * Get category
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set category
+     *
+     * @param \CategoryBundle\Entity\Category $category
+     *
+     * @return Product
+     */
+    public function setCategory(\CategoryBundle\Entity\Category $category = null)
     {
         $this->category = $category;
 
@@ -159,13 +229,26 @@ class Product
     }
 
     /**
-     * Get category
+     * Add producer
      *
-     * @return string
+     * @param \ProducerBundle\Entity\Producer $producer
+     *
+     * @return Product
      */
-    public function getCategory()
+    public function addProducer(\ProducerBundle\Entity\Producer $producer)
     {
-        return $this->category;
+        $this->producer[] = $producer;
+
+        return $this;
+    }
+
+    /**
+     * Remove producer
+     *
+     * @param \ProducerBundle\Entity\Producer $producer
+     */
+    public function removeProducer(\ProducerBundle\Entity\Producer $producer)
+    {
+        $this->producer->removeElement($producer);
     }
 }
-
