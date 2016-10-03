@@ -8,6 +8,12 @@ client_show:
     defaults: { _controller: "ClientBundle:Client:show" }
     methods:  GET
 
+client_get:
+   path:     /{id}/get
+   defaults: { _controller: "ClientBundle:Client:get" }
+   methods:  [GET, POST]
+
+
 client_new:
     path:     /new
     defaults: { _controller: "ClientBundle:Client:new" }

@@ -42,7 +42,7 @@ client_adress:
 
 client:
     resource: "@ClientBundle/Resources/config/routing.yml"
-    prefix:   /client_adress
+    prefix:   /client
 
 producer:
     resource: "@ProducerBundle/Resources/config/routing.yml"

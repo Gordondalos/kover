@@ -106,6 +106,38 @@ class ClientController extends Controller
         ));
     }
 
+	public function getAction(Client $client){
+		$em = $this->getDoctrine()->getManager();
+
+		$clientAdress = $em->getRepository('ClientAdressBundle:ClientAdress')->findBy(array(
+			'client' => $client,
+		));
+		$clientPhone = $em->getRepository('ClientPhoneBundle:ClientPhone')->findBy(array(
+			'client' => $client,
+		));
+
+		$clientAdress_info = Array();
+		foreach ($clientAdress as $key => $adresok){
+			$clientAdress_info['adreses'][$key]=$adresok->getAdress();
+		}
+
+		$clientPhone_info = array();
+		foreach ($clientPhone as $key => $phones){
+			$clientPhone_info['phones'][$key]=$phones->getPhone();
+		}
+
+
+
+		$client_info['id'] = $client->getId();
+		$client_info['name'] = $client->getName();
+		$client_info['description'] = $client->getDescription();
+
+		$result = array_merge($client_info,$clientAdress_info, $clientPhone_info);
+
+		return $this->json(array('client' => $result));
+
+	}
+
     /**
      * Deletes a Client entity.
      *

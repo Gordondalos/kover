@@ -10,42 +10,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var data_service_1 = require('./data.service');
-// import { Select2Component } from 'ng2-select2/ng2-select2';
 var AppComponent = (function () {
     function AppComponent(data) {
         this.data = data;
+        // стартовые значения селекта
+        this.startValue = "";
         this.selected = "";
-        // function for result template
-        this.templateResult = function (state) {
-            if (!state.id) {
-                return state.text;
-            }
-            var image = '<span class="image"></span>';
-            if (state.additional.image) {
-                image = '<span class="image"><img src="' + state.additional.image + '"</span>';
-            }
-            return $('<span><b>' + state.additional.winner + '.</b> ' + image + ' ' + state.text + '</span>');
-        };
+        this.id_client = "";
+        this.name_client = "";
+        this.phone_client = "";
+        this.client_description = "";
         // function for selection tempalte
         this.templateSelection = function (state) {
             if (!state.id) {
                 return state.text;
             }
-            return $('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
+            return JQuery('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
         };
     }
+    // Функция отслеживающая изменения в селекте
     AppComponent.prototype.changed = function (e) {
         this.selected = e.value;
+        this.id_client = this.selected;
+        this.getHeroes(+this.id_client);
+        this.sbros();
+    };
+    AppComponent.prototype.sbros = function () {
+        this.o_phones = '';
+        this.o_name = '';
+        this.o_adress = '';
+    };
+    AppComponent.prototype.addAdress = function (adress) {
+        this.o_adress = adress;
+    };
+    AppComponent.prototype.getHeroes = function (id) {
+        var _this = this;
+        this.data
+            .getHer(id)
+            .then(function (res) {
+            _this.client = JSON.parse(res._body).client;
+        });
+    };
+    AppComponent.prototype.addInfo = function () {
+        var phones = '';
+        this.client.phones.forEach(function (phone) {
+            phones += " " + phone;
+        });
+        this.o_phones = phones;
+        this.o_name = this.client.name;
     };
     AppComponent.prototype.ngOnInit = function () {
         var phones = JSON.parse($('.phones').val());
-        // console.log(phones);
-        var phone_arr = [];
-        phones.forEach(function (phone, index) {
-            phone_arr[index] = [];
-            phone_arr[index]['id'] = phone.client_id;
-            phone_arr[index]['text'] = phone.phone;
-        });
+        this.phones = phones;
         this.data.setComplexList(phones);
     };
     AppComponent = __decorate([

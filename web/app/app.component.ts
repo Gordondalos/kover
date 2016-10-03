@@ -1,68 +1,91 @@
 import { Component, OnInit } from '@angular/core';
-
 import { DataService } from './data.service';
-// import { Select2Component } from 'ng2-select2/ng2-select2';
+import { Select2TemplateFunction, Select2OptionData } from "ng2-select2";
 
 
-@Component({
-    selector: 'my-app',
-    templateUrl: '/app/angular_view/app_view/app.component.view.html',
-    providers: [DataService]
+@Component ( {
+    selector : 'my-app',
+    templateUrl : '/app/angular_view/app_view/app.component.view.html',
+    providers : [ DataService ]
 
-})
+} )
 
 
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
-    private startValue: string;
-    private selected: string ="";
+    // стартовые значения селекта
+    private startValue : string = "";
+    private selected : string = "";
 
-    constructor(private data: DataService) { }
+    private phones : any;
+    private id_client : string = "";
+    private name_client : string = "";
+    private phone_client : string = "";
+    private client_description : string = "";
 
-    // function for result template
-    public templateResult: Select2TemplateFunction = (state: Select2OptionData): JQuery | string => {
-        if (!state.id) {
-            return state.text;
-        }
+    private client;
+    private o_phones : string;
+    private o_name : string;
+    private o_adress : string;
 
-        let image = '<span class="image"></span>';
 
-        if (state.additional.image) {
-            image = '<span class="image"><img src="' + state.additional.image + '"</span>';
-        }
-
-        return $('<span><b>' + state.additional.winner + '.</b> ' + image + ' ' + state.text + '</span>');
-    }
+    constructor ( private data : DataService ) { }
 
     // function for selection tempalte
-    public templateSelection: Select2TemplateFunction = (state: Select2OptionData): JQuery | string => {
-        if (!state.id) {
+    public templateSelection : Select2TemplateFunction = ( state : Select2OptionData ) : JQuery | string => {
+        if ( !state.id ) {
             return state.text;
         }
+        return JQuery ( '<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>' );
+    };
 
-        return $('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
-    }
-
-    public changed(e: Object): void {
+    // Функция отслеживающая изменения в селекте
+    public changed ( e : Object ) : void {
         this.selected = e.value;
+        this.id_client = this.selected;
+        this.getHeroes ( +this.id_client );
+        this.sbros();
+
+
+    }
+
+    sbros(){
+        this.o_phones = '';
+        this.o_name = '';
+        this.o_adress = '';
+    }
+
+    addAdress ( adress ) {
+        this.o_adress = adress;
+    }
+
+    getHeroes ( id : number ) : void {
+        this.data
+            .getHer ( id )
+            // .then(heroes => this.client = heroes);
+            .then ( res => {
+                this.client = JSON.parse ( res._body ).client;
+            } );
+    }
+
+    addInfo () {
+
+        var phones = '';
+        this.client.phones.forEach ( function ( phone ) {
+            phones += " " + phone;
+        } );
+
+        this.o_phones = phones;
+        this.o_name = this.client.name;
+
+
     }
 
 
-
-
-
-    ngOnInit(){
-       var phones = JSON.parse($('.phones').val());
-
-        // console.log(phones);
-        var phone_arr = [];
-       phones.forEach(function(phone,index){
-           phone_arr[index] = [];
-           phone_arr[index]['id'] = phone.client_id;
-           phone_arr[index]['text'] = phone.phone;
-        });
-        this.data.setComplexList(phones);
-
+    ngOnInit () {
+        var phones = JSON.parse ( $ ( '.phones' ).val () );
+        this.phones = phones;
+        this.data.setComplexList ( phones );
     }
 
 }
