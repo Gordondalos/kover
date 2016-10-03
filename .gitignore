@@ -16,4 +16,5 @@ var/cache
 /.sass-cache/
 /.idea/
 /help/
+/node_modules/
 
