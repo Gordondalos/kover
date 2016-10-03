@@ -3,10 +3,15 @@
 		<div class="col-xs-3"><h3>Оформление заказа</h3></div>
 		<div class="col-xs-5 p-x-0">
 
-			Select 1: <select2 [width]="200" [data]="data.getSimpleList()" [templateResult]="templateResult" [templateSelection]="templateSelection"></select2>
+
+			Поиск: <select2
+					[value]="startValue"
+					(valueChanged)="changed($event)"
+					[data]="data.getComplexList()"
+					[width]="200" [theme]="'classic'">
+				</select2>
 			<br/><br/>
-			Select 2: <select2 [value]="startValue" (valueChanged)="changed($event)" [data]="data.getComplexList()" [width]="200" [theme]="'classic'"></select2>
-			<br/><br/>
+
 			<div *ngIf="selected">
 				Selected value in select 2: <b>{{selected}}</b>
 			</div>

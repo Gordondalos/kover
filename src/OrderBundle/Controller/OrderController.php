@@ -55,11 +55,11 @@ class OrderController extends Controller
 
 	    $phones = array();
 	    foreach ($phones_arr as $key=>$val){
-		    $phones[$key]['id'] = $val->getId();
+//		    $phones[$key]['id'] = $val->getId();
 		    $phones[$key]['phone'] = $val->getPhone();
 		    $phones[$key]['client_id'] = $val->getClient()->getId();
-		    $phones[$key]['client_name'] = $val->getClient()->getName();
-		    $phones[$key]['client_description'] = $val->getClient()->getDescription();
+//		    $phones[$key]['client_name'] = $val->getClient()->getName();
+//		    $phones[$key]['client_description'] = $val->getClient()->getDescription();
 	    }
 
 	    echo '<pre>';

@@ -14,10 +14,10 @@ import { DataService } from './data.service';
 
 export class AppComponent implements OnInit{
 
-    private startValue: string = 'car3';
+    private startValue: string;
     private selected: string ="";
 
-    constructor(private data: DataService) { }
+    constructor(private dataServices: DataService) { }
 
     // function for result template
     public templateResult: Select2TemplateFunction = (state: Select2OptionData): JQuery | string => {
@@ -40,7 +40,7 @@ export class AppComponent implements OnInit{
             return state.text;
         }
 
-        return jQuery('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
+        return $('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
     }
 
     public changed(e: Object): void {
@@ -48,11 +48,20 @@ export class AppComponent implements OnInit{
     }
 
 
-    phones: any;
+
+
 
     ngOnInit(){
-       this.phones = JSON.parse($('.phones').val());
-       console.log(this.phones);
+       var phones = JSON.parse($('.phones').val());
+
+        // console.log(phones);
+        var phone_arr = [];
+       phones.forEach(function(phone,index){
+           phone_arr[index] = [];
+           phone_arr[index]['id'] = phone.client_id;
+           phone_arr[index]['text'] = phone.phone;
+        });
+        this.dataServices.setComplexList(phone_arr);
 
     }
 

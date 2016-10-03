@@ -12,9 +12,8 @@ var core_1 = require('@angular/core');
 var data_service_1 = require('./data.service');
 // import { Select2Component } from 'ng2-select2/ng2-select2';
 var AppComponent = (function () {
-    function AppComponent(data) {
-        this.data = data;
-        this.startValue = 'car3';
+    function AppComponent(dataServices) {
+        this.dataServices = dataServices;
         this.selected = "";
         // function for result template
         this.templateResult = function (state) {
@@ -32,15 +31,22 @@ var AppComponent = (function () {
             if (!state.id) {
                 return state.text;
             }
-            return jQuery('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
+            return $('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
         };
     }
     AppComponent.prototype.changed = function (e) {
         this.selected = e.value;
     };
     AppComponent.prototype.ngOnInit = function () {
-        this.phones = JSON.parse($('.phones').val());
-        console.log(this.phones);
+        var phones = JSON.parse($('.phones').val());
+        // console.log(phones);
+        var phone_arr = [];
+        phones.forEach(function (phone, index) {
+            phone_arr[index] = [];
+            phone_arr[index]['id'] = phone.client_id;
+            phone_arr[index]['text'] = phone.phone;
+        });
+        this.dataServices.setComplexList(phone_arr);
     };
     AppComponent = __decorate([
         core_1.Component({
