@@ -35,10 +35,13 @@ var AppComponent = (function () {
         this.getHeroes(+this.id_client);
         this.sbros();
     };
+    // метод сброса полей в форме хакаха
     AppComponent.prototype.sbros = function () {
         this.o_phones = '';
         this.o_name = '';
         this.o_adress = '';
+        // this.o_voditel = '';
+        this.o_adress_from = '';
     };
     AppComponent.prototype.addAdress = function (adress) {
         this.o_adress = adress;
@@ -59,10 +62,15 @@ var AppComponent = (function () {
         this.o_phones = phones;
         this.o_name = this.client.name;
     };
+    AppComponent.prototype.addVoditel = function (name, id) {
+        this.o_voditel = name;
+    };
     AppComponent.prototype.ngOnInit = function () {
         var phones = JSON.parse($('.phones').val());
         this.phones = phones;
         this.data.setComplexList(phones);
+        var voditel_send = JSON.parse($('.voditel_send').val());
+        this.voditel_send = voditel_send;
     };
     AppComponent = __decorate([
         core_1.Component({

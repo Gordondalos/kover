@@ -73,11 +73,18 @@ class UserController extends Controller
      */
     public function editAction(Request $request, User $user)
     {
-        $deleteForm = $this->createDeleteForm($user);
+
+    	$deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('UserBundle\Form\UserType', $user);
+
+	    echo "<pre>";
+	    print_r($_POST);
+	    echo "</pre>";
+
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();

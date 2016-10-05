@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use OrderBundle\Entity\Order;
 use OrderBundle\Form\OrderType;
 use ClientPhoneBundle\Entity\ClientPhone;
+use UserBundle\Entity\User;
 
 /**
  * Order controller.
@@ -52,6 +53,18 @@ class OrderController extends Controller
 	    $em = $this->getDoctrine()->getManager();
 
 	    $phones_arr = $em->getRepository('ClientPhoneBundle:ClientPhone')->findAll();
+	    $voditel_arr = $em->getRepository('UserBundle:User')->findAll();
+
+
+	    $voditel_send = Array();
+	    foreach ($voditel_arr as $key => $user){
+		    $voditel_send[$key]['id'] = $user->getId();
+		    $voditel_send[$key]['name'] = $user->getUserName();
+	    }
+
+//	    echo "<pre>";
+//	    print_r($voditel_send);
+//	    echo "</pre>";
 
 	    $phones = array();
 	    foreach ($phones_arr as $key=>$val){
@@ -69,7 +82,8 @@ class OrderController extends Controller
         return $this->render('order/new.html.twig', array(
             'order' => $order,
 	        'phones' => $phones,
-            'form' => $form->createView(),
+	        'voditel_send' => $voditel_send,
+//            'form' => $form->createView(),
         ));
     }
 

@@ -3,6 +3,7 @@
 {% block body %}
 
     <input class="phones" type="hidden" value='{{ phones|json_encode()|raw }}'>
+    <input class="voditel_send" type="hidden" value='{{ voditel_send|json_encode()|raw }}'>
 
     <my-app> </my-app>
 

@@ -2,9 +2,11 @@
 
 namespace UserBundle\Form;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 
 class UserType extends AbstractType
 {
@@ -20,7 +22,11 @@ class UserType extends AbstractType
             ->add('age')
             ->add('passport')
             ->add('photoUser')
-            ->add('groups')
+	        ->add('groups', EntityType::class , array(
+		        'class' => 'UserBundle\Entity\Group',
+		        'choice_label' => 'name',
+	        ))
+
         ;
     }
     

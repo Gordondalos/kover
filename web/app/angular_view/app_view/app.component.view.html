@@ -40,7 +40,7 @@
 				</div>
 				<div>Адреса:
 					<ul class="p-l-2">
-						<li  *ngFor='let adress of client.adreses'><span class="text-underline text-primary pointer" (click)="addAdress(adress)">{{adress}}</span></li>
+						<li class="m-b-05"  *ngFor='let adress of client.adreses'><span class=" text-primary pointer" (click)="addAdress(adress)"><i class="mdi mdi-plus-box"></i> {{adress}}</span></li>
 					</ul>
 
 				</div>
@@ -70,7 +70,9 @@
 			<input [(ngModel)]="o_adress" type="text" class="form-control m-b-1" placeholder="Адресс">
 			<input [(ngModel)]="o_name" type="text" class="form-control m-b-1" placeholder="ФИО">
 			<input [(ngModel)]="o_phones" type="text" class="form-control m-b-1" placeholder="Телефоны">
-			<input (click)="sbros()" class="btn btn-warning pull-xs-left" type="submit" value="Сброс"/>
+			<input [(ngModel)]="o_voditel" type="text" class="form-control m-b-1" placeholder="Курьер">
+			<input [(ngModel)]="o_adress_from" type="text" class="form-control m-b-1" placeholder="Откуда">
+			<input (click)="sbros()" class="btn btn-danger pull-xs-left" type="submit" value="Сброс"/>
 			<input class="btn btn-success pull-xs-right" type="submit" value="Создать"/>
 
 
@@ -81,15 +83,8 @@
 
 			<ul>
 				<li><a href="#">Василий (3:5 | 3 мин)</a></li>
-				<li><a href="#">Гусейн (1:1 | 35 мин)</a></li>
-				<li><a href="#">Анатолий (1:0 | 15 мин)</a></li>
-				<li><a href="#">Женя</a></li>
-				<li><a href="#">Анатолий нов</a></li>
-				<li><a href="#">Дмитрий</a></li>
-				<li><a href="#">Катя</a></li>
-				<li><a href="#">Александр</a></li>
-				<li><a href="#">Андрей</a></li>
-				<li><a href="#">Мирбек</a></li>
+				<li class="m-b-05"  *ngFor="let voditel of voditel_send"><span (click)="addVoditel(voditel.name,voditel.id)" class="pointer text-primary"><i class="mdi mdi-plus-box"></i> {{voditel.name}}</span></li>
+
 			</ul>
 		</div>
 	</div>

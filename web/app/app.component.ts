@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
     private startValue : string = "";
     private selected : string = "";
 
-    private phones : any;
+    private phones : string[];
+    private voditel_send : string[];
     private id_client : string = "";
     private name_client : string = "";
     private phone_client : string = "";
@@ -27,6 +28,8 @@ export class AppComponent implements OnInit {
     private o_phones : string;
     private o_name : string;
     private o_adress : string;
+    private o_voditel : string;
+    private o_adress_from : string;
 
 
     constructor ( private data : DataService ) { }
@@ -48,11 +51,13 @@ export class AppComponent implements OnInit {
 
 
     }
-
+    // метод сброса полей в форме хакаха
     sbros(){
         this.o_phones = '';
         this.o_name = '';
         this.o_adress = '';
+        // this.o_voditel = '';
+        this.o_adress_from = '';
     }
 
     addAdress ( adress ) {
@@ -69,16 +74,16 @@ export class AppComponent implements OnInit {
     }
 
     addInfo () {
-
         var phones = '';
         this.client.phones.forEach ( function ( phone ) {
             phones += " " + phone;
         } );
-
         this.o_phones = phones;
         this.o_name = this.client.name;
+    }
 
-
+    addVoditel(name, id){
+        this.o_voditel = name;
     }
 
 
@@ -86,6 +91,8 @@ export class AppComponent implements OnInit {
         var phones = JSON.parse ( $ ( '.phones' ).val () );
         this.phones = phones;
         this.data.setComplexList ( phones );
-    }
 
+        var voditel_send = JSON.parse ( $ ( '.voditel_send' ).val () );
+        this.voditel_send = voditel_send;
+    }
 }
