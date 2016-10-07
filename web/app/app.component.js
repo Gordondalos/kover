@@ -22,6 +22,15 @@ var AppComponent = (function () {
         this.new_adress_arr = [];
         this.o_adress_from = '';
     }
+    AppComponent.prototype.add_new_client = function () {
+        if (this.client == undefined) {
+            this.client = [];
+            this.client.name = this.new_client_name;
+            this.client.phones = [this.new_client_phone];
+            this.client.adreses = [this.new_client_adress];
+            this.client.description = this.new_client_description;
+        }
+    };
     AppComponent.prototype.add_new_adress_shows = function () {
         this.add_new_adress_show = true;
     };
@@ -107,8 +116,8 @@ var AppComponent = (function () {
     };
     //Установка производителя заказа
     AppComponent.prototype.onSelected_producer_send = function (item) {
-        this.producer_send_id = item.value;
-        this.producer_send_title = item.label;
+        this.o_producer_send_id = item.value;
+        this.o_producer_send_title = item.label;
     };
     AppComponent = __decorate([
         core_1.Component({

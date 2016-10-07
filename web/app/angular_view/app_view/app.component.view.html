@@ -43,17 +43,13 @@
 
 				</div>
 				<div> <span>Адреса:</span>
-
 					<i (click)="add_new_adress_shows()" class="pull-xs-right mdi f24 pointer text-success mdi-plus-box"></i>
-
-
 					<div class="clearfix"></div>
 					<ul class="p-l-2">
 						<li class="m-b-05" *ngFor='let adress of client.adreses'><span class=" text-primary pointer"
 						 (click)="addAdress(adress)">
 							<i class="mdi mdi-plus-box"></i> {{adress}}</span></li>
 					</ul>
-
 					<div class="clearfix"></div>
 					<div class="row m-x-0 m-b-1" *ngIf="add_new_adress_show == true" >
 						<div class="input-group">
@@ -63,7 +59,6 @@
 					      </span>
 						</div>
 					</div>
-
 
 				</div>
 
@@ -78,12 +73,13 @@
 			</div>
 
 			<hr>
-			<h5>Новый Клиент</h5>			<input class="form-control m-y-1" type="text" name="name" placeholder="ФИО">
-			<input class="form-control m-y-1" type="text" name="phone" placeholder="Phone">
-			<textarea class="form-control m-y-1" name="adress" placeholder="Адрес"></textarea>
-			<textarea name="description" class="form-control m-y-1" placeholder="Описание"></textarea>
+			<h5>Новый Клиент</h5>			
+			<input [(ngModel)]="new_client_name" class="form-control m-y-1" type="text" name="name" placeholder="ФИО">
+			<input [(ngModel)]="new_client_phone" class="form-control m-y-1" type="text" name="phone" placeholder="Phone">
+			<textarea [(ngModel)]="new_client_adress" class="form-control m-y-1" name="adress" placeholder="Адрес"></textarea>
+			<textarea [(ngModel)]="new_client_description" name="description" class="form-control m-y-1" placeholder="Описание"></textarea>
 
-			<button class="btn btn-success pull-xs-right">Заполнить</button>
+			<button (click)="add_new_client()" class="btn btn-success pull-xs-right">Заполнить</button>
 		</div>
 
 		<div class="col-xs-5 wheat p-a-1">

@@ -6,12 +6,16 @@ import { DataService } from './data.service';
     selector : 'my-app',
     templateUrl : '/app/angular_view/app_view/app.component.view.html',
     providers : [ DataService ],
-
-
 } )
 
 
 export class AppComponent implements OnInit {
+
+   private new_client_name: string;
+   private new_client_phone: string;
+   private new_client_adress: string;
+   private new_client_description: string;
+
 
     private selected_phone : string = "";
 
@@ -40,8 +44,21 @@ export class AppComponent implements OnInit {
 
 
 
-    constructor ( private data : DataService ) { }
+    constructor ( private data : DataService) { }
 
+
+    add_new_client(){
+
+        if(this.client == undefined){
+            this.client = [];
+            this.client.name = this.new_client_name;
+            this.client.phones = [this.new_client_phone];
+            this.client.adreses = [this.new_client_adress];
+            this.client.description = this.new_client_description;
+
+
+        }
+    }
 
 
     add_new_adress_shows(){
@@ -152,8 +169,8 @@ export class AppComponent implements OnInit {
 
     //Установка производителя заказа
     onSelected_producer_send(item){
-        this.producer_send_id = item.value;
-        this.producer_send_title = item.label;
+        this.o_producer_send_id = item.value;
+        this.o_producer_send_title = item.label;
 
     }
 
