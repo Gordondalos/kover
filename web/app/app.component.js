@@ -13,25 +13,23 @@ var data_service_1 = require('./data.service');
 var AppComponent = (function () {
     function AppComponent(data) {
         this.data = data;
+        // стартовые значения селекта
+        this.selected_phone = "";
         this.id_client = "";
         this.name_client = "";
         this.phone_client = "";
         this.client_description = "";
     }
     // Функция отслеживающая изменения в селекте
-    // public changed ( event : Object ) : void {
-    //     this.selected = event.value;
-    //     this.id_client = this.selected;
-    //     this.getHeroes ( +this.id_client );
-    //     this.sbros();
-    // }
-    // метод сброса полей в форме Заказа
+    AppComponent.prototype.changed = function () {
+        this.id_client = this.selected;
+        this.getHeroes(+this.id_client);
+        this.sbros();
+    };
     AppComponent.prototype.sbros = function () {
         this.o_phones = '';
         this.o_name = '';
         this.o_adress = '';
-        // this.o_voditel = '';
-        this.o_adress_from = '';
     };
     AppComponent.prototype.addAdress = function (adress) {
         this.o_adress = adress;
@@ -52,21 +50,32 @@ var AppComponent = (function () {
         this.o_phones = phones;
         this.o_name = this.client.name;
     };
-    AppComponent.prototype.addVoditel = function (name, id) {
-        this.o_voditel = name;
-    };
     AppComponent.prototype.ngOnInit = function () {
         var phones = JSON.parse($('.phones').val());
         this.phones = phones;
         this.data.setComplexList(phones);
-        var voditel_send = JSON.parse($('.voditel_send').val());
-        this.voditel_send = voditel_send;
+    };
+    AppComponent.prototype.onSelectOpened = function () {
+        //console.log('Select dropdown opened.');
+    };
+    AppComponent.prototype.onSelectClosed = function () {
+        //console.log('Select dropdown closed.');
+    };
+    AppComponent.prototype.onSelected = function (item) {
+        console.log('Selected: ' + item.value + ', ' + item.label);
+        var arr = item.value.split('.');
+        var id_client = arr[1];
+        this.getHeroes(id_client);
+        this.selected_phone = arr[0];
+    };
+    AppComponent.prototype.onDeselected = function (item) {
+        console.log('Deselected: ' + item.value + ', ' + item.label);
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
             templateUrl: '/app/angular_view/app_view/app.component.view.html',
-            providers: [data_service_1.DataService]
+            providers: [data_service_1.DataService],
         }), 
         __metadata('design:paramtypes', [data_service_1.DataService])
     ], AppComponent);

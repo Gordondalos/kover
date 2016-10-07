@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { Select2OptionData } from 'ng2-select2/ng2-select2';
-
-import 'rxjs/add/operator/toPromise';
 import { Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
+
 
 @Injectable ()
 export class DataService {
@@ -17,7 +16,7 @@ export class DataService {
     }
 
 
-    getComplexList () : Select2OptionData[] {
+    getComplexList () : any {
         return this.phon;
     }
 

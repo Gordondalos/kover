@@ -13,13 +13,22 @@ var platform_browser_1 = require('@angular/platform-browser');
 var app_component_1 = require('./app.component');
 var http_1 = require('@angular/http');
 var forms_1 = require('@angular/forms');
+var forms_2 = require('@angular/forms');
+var angular2_select_1 = require('angular2-select');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule, http_1.HttpModule, forms_1.FormsModule],
-            declarations: [app_component_1.AppComponent],
+            imports: [platform_browser_1.BrowserModule,
+                http_1.HttpModule,
+                forms_1.FormsModule,
+                forms_2.ReactiveFormsModule,
+                angular2_select_1.SelectModule
+            ],
+            declarations: [
+                app_component_1.AppComponent,
+            ],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

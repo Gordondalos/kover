@@ -28,6 +28,7 @@
 			// other libraries
 			'rxjs':                      'npm:rxjs',
 			'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
+			'angular2-select': '/node_modules/angular2-select'
 
 
 
@@ -42,6 +43,10 @@
 				defaultExtension: 'js'
 			},
 			'angular-in-memory-web-api': {
+				main: './index.js',
+				defaultExtension: 'js'
+			},
+			'angular2-select': {
 				main: './index.js',
 				defaultExtension: 'js'
 			}

@@ -5,17 +5,19 @@ import { DataService } from './data.service';
 @Component ( {
     selector : 'my-app',
     templateUrl : '/app/angular_view/app_view/app.component.view.html',
-    providers : [ DataService ]
+    providers : [ DataService ],
+
 
 } )
 
 
 export class AppComponent implements OnInit {
 
+    // стартовые значения селекта
 
+    private selected_phone : string = "";
 
-    private phones : string[];
-    private voditel_send : string[];
+    private phones : any;
     private id_client : string = "";
     private name_client : string = "";
     private phone_client : string = "";
@@ -25,29 +27,25 @@ export class AppComponent implements OnInit {
     private o_phones : string;
     private o_name : string;
     private o_adress : string;
-    private o_voditel : string;
-    private o_adress_from : string;
 
 
-    constructor ( private data : DataService) { }
+    constructor ( private data : DataService ) { }
 
 
     // Функция отслеживающая изменения в селекте
-    // public changed ( event : Object ) : void {
-    //     this.selected = event.value;
-    //     this.id_client = this.selected;
-    //     this.getHeroes ( +this.id_client );
-    //     this.sbros();
-    // }
+    public changed () : void {
+
+        this.id_client = this.selected;
+        this.getHeroes ( +this.id_client );
+        this.sbros();
 
 
-    // метод сброса полей в форме Заказа
+    }
+
     sbros(){
         this.o_phones = '';
         this.o_name = '';
         this.o_adress = '';
-        // this.o_voditel = '';
-        this.o_adress_from = '';
     }
 
     addAdress ( adress ) {
@@ -68,12 +66,11 @@ export class AppComponent implements OnInit {
         this.client.phones.forEach ( function ( phone ) {
             phones += " " + phone;
         } );
+
         this.o_phones = phones;
         this.o_name = this.client.name;
-    }
 
-    addVoditel(name, id){
-        this.o_voditel = name;
+
     }
 
 
@@ -81,8 +78,28 @@ export class AppComponent implements OnInit {
         var phones = JSON.parse ( $ ( '.phones' ).val () );
         this.phones = phones;
         this.data.setComplexList ( phones );
-
-        var voditel_send = JSON.parse ( $ ( '.voditel_send' ).val () );
-        this.voditel_send = voditel_send;
     }
+
+
+    onSelectOpened() {
+        //console.log('Select dropdown opened.');
+    }
+
+    onSelectClosed() {
+        //console.log('Select dropdown closed.');
+
+    }
+
+    onSelected(item) {
+        console.log('Selected: ' + item.value + ', ' + item.label);
+        var arr = item.value.split('.');
+        var id_client = arr[1];
+        this.getHeroes(id_client);
+        this.selected_phone = arr[0];
+    }
+
+    onDeselected(item) {
+        console.log('Deselected: ' + item.value + ', ' + item.label);
+    }
+
 }
