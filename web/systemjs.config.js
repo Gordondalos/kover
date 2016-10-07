@@ -9,8 +9,8 @@
 			'npm:': '/node_modules/',
 			'angular2-in-memory-web-api': 'node_modules/angular2-in-memory-web-api',
 			'@angular':                   'node_modules/@angular',
-			'ng2-select2': '/node_modules/ng2-select2',
-			'JQuery': '/node_modules/jquery'
+
+
 		},
 		// map tells the System loader where to look for things
 		map: {
@@ -28,8 +28,8 @@
 			// other libraries
 			'rxjs':                      'npm:rxjs',
 			'angular-in-memory-web-api': 'npm:angular-in-memory-web-api',
-			'ng2-select2': 'npm:ng2-select2',
-			'JQuery': 'npm:jquery'
+
+
 
 		},
 		// packages tells the System loader how to load when no filename and/or no extension
@@ -44,15 +44,9 @@
 			'angular-in-memory-web-api': {
 				main: './index.js',
 				defaultExtension: 'js'
-			},
-			'ng2-select2': {
-				defaultExtension: 'js',
-				main: 'ng2-select2'
-			},
-			'JQuery': {
-				defaultExtension: 'js',
-				main: 'dist/jquery.js'
-			},
+			}
+
+
 		}
 	});
 })(this);

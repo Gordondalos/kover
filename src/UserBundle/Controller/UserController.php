@@ -77,6 +77,7 @@ class UserController extends Controller
     	$deleteForm = $this->createDeleteForm($user);
         $editForm = $this->createForm('UserBundle\Form\UserType', $user);
 
+
 	    echo "<pre>";
 	    print_r($_POST);
 	    echo "</pre>";

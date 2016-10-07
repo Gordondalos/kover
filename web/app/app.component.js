@@ -13,29 +13,19 @@ var data_service_1 = require('./data.service');
 var AppComponent = (function () {
     function AppComponent(data) {
         this.data = data;
-        // стартовые значения селекта
-        this.startValue = "";
-        this.selected = "";
         this.id_client = "";
         this.name_client = "";
         this.phone_client = "";
         this.client_description = "";
-        // function for selection tempalte
-        this.templateSelection = function (state) {
-            if (!state.id) {
-                return state.text;
-            }
-            return JQuery('<span><b>' + state.additional.winner + '.</b> ' + state.text + '</span>');
-        };
     }
     // Функция отслеживающая изменения в селекте
-    AppComponent.prototype.changed = function (e) {
-        this.selected = e.value;
-        this.id_client = this.selected;
-        this.getHeroes(+this.id_client);
-        this.sbros();
-    };
-    // метод сброса полей в форме хакаха
+    // public changed ( event : Object ) : void {
+    //     this.selected = event.value;
+    //     this.id_client = this.selected;
+    //     this.getHeroes ( +this.id_client );
+    //     this.sbros();
+    // }
+    // метод сброса полей в форме Заказа
     AppComponent.prototype.sbros = function () {
         this.o_phones = '';
         this.o_name = '';
