@@ -13,13 +13,27 @@ var data_service_1 = require('./data.service');
 var AppComponent = (function () {
     function AppComponent(data) {
         this.data = data;
-        // стартовые значения селекта
         this.selected_phone = "";
         this.id_client = "";
         this.name_client = "";
         this.phone_client = "";
         this.client_description = "";
+        this.add_new_adress_show = false;
+        this.new_adress_arr = [];
+        this.o_adress_from = '';
     }
+    AppComponent.prototype.add_new_adress_shows = function () {
+        this.add_new_adress_show = true;
+    };
+    AppComponent.prototype.add_new_adress = function () {
+        var new_adress = this.new_adress;
+        if (new_adress.length > 0) {
+            this.new_adress_arr.push(new_adress);
+            this.new_adress = '';
+            this.add_new_adress_show = false;
+            this.client.adreses.push((new_adress));
+        }
+    };
     // метод сброса параметров заказа
     AppComponent.prototype.sbros = function () {
         this.o_phones = '';
@@ -61,6 +75,9 @@ var AppComponent = (function () {
         var voditel_send = JSON.parse($('.voditel_send').val());
         this.voditel_send = voditel_send;
         this.data.setComplexList_voditel_send(voditel_send);
+        var producer_send = JSON.parse($('.producer_send').val());
+        this.producer_send = producer_send;
+        this.data.setComplexList_producer_send(producer_send);
     };
     AppComponent.prototype.clear_info_client = function () {
         this.client = true;
@@ -87,6 +104,11 @@ var AppComponent = (function () {
     AppComponent.prototype.onDeselected_phone = function (item) {
         console.log('Deselected: ' + item.value + ', ' + item.label);
         //this.clear_info_client();
+    };
+    //Установка производителя заказа
+    AppComponent.prototype.onSelected_producer_send = function (item) {
+        this.producer_send_id = item.value;
+        this.producer_send_title = item.label;
     };
     AppComponent = __decorate([
         core_1.Component({

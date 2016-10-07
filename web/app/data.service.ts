@@ -8,6 +8,7 @@ export class DataService {
 
     phon : any = [];
     voditel_send : any = [];
+    producer_send : any = [];
     heroesUrl : string = '';
 
     constructor ( private http : Http ) { }
@@ -20,9 +21,17 @@ export class DataService {
         this.voditel_send = data;
     }
 
+    setComplexList_producer_send( data : any ) {
+        this.producer_send = data;
+    }
+
 
     getComplexList_phone () : any {
         return this.phon;
+    }
+
+    getComplexList_producer_send () : any {
+        return this.producer_send;
     }
 
     getComplexList_voditel_send () : any {

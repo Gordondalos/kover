@@ -16045,25 +16045,40 @@ a.text-danger:focus, a.text-danger:hover {
 }
 
 /* line 5, ../../src/_sass/helper/_helper.sass */
+.f24 {
+  font-size: 24px;
+}
+
+/* line 7, ../../src/_sass/helper/_helper.sass */
+.f30 {
+  font-size: 30px;
+}
+
+/* line 10, ../../src/_sass/helper/_helper.sass */
 .white {
   color: #fff;
 }
-/* line 7, ../../src/_sass/helper/_helper.sass */
+/* line 12, ../../src/_sass/helper/_helper.sass */
 .white a {
   color: #fff;
 }
 
-/* line 10, ../../src/_sass/helper/_helper.sass */
+/* line 15, ../../src/_sass/helper/_helper.sass */
 .wheat {
   background-color: wheat;
 }
 
-/* line 15, ../../src/_sass/helper/_helper.sass */
+/* line 18, ../../src/_sass/helper/_helper.sass */
+.lavanda {
+  background-color: #E6E6FA;
+}
+
+/* line 23, ../../src/_sass/helper/_helper.sass */
 .m-b-05 {
   margin-bottom: 0.5rem !important;
 }
 
-/* line 17, ../../src/_sass/helper/_helper.sass */
+/* line 25, ../../src/_sass/helper/_helper.sass */
 .m-b-07 {
   margin-bottom: 0.7rem !important;
 }
@@ -16086,4 +16101,11 @@ input[type="submit"] {
 /* line 24, ../../src/_sass/cosmetic/_cosmetic.sass */
 .pointer {
   cursor: pointer;
+}
+
+/* line 27, ../../src/_sass/cosmetic/_cosmetic.sass */
+.select2-container[_ngcontent-jrr-2] {
+  height: 38px !important;
+  border-radius: 0.25rem !important;
+  padding-top: 4px !important;
 }

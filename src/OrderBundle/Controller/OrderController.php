@@ -54,6 +54,14 @@ class OrderController extends Controller
 
 	    $phones_arr = $em->getRepository('ClientPhoneBundle:ClientPhone')->findAll();
 	    $voditel_arr = $em->getRepository('UserBundle:User')->findAll();
+	    $prodicer_arr = $em->getRepository('ProducerBundle:Producer')->findAll();
+
+
+	    $producer_send = Array();
+	    foreach ($prodicer_arr as $key=> $producer){
+		    $producer_send[$key]['label'] = $producer->getTitle();
+		    $producer_send[$key]['value'] = $producer->getId();
+	    }
 
 
 	    $voditel_send = Array();
@@ -61,10 +69,6 @@ class OrderController extends Controller
 		    $voditel_send[$key]['id'] = $user->getId();
 		    $voditel_send[$key]['name'] = $user->getUserName();
 	    }
-
-//	    echo "<pre>";
-//	    print_r($voditel_send);
-//	    echo "</pre>";
 
 	    $phones = array();
 	    foreach ($phones_arr as $key=>$val){
@@ -75,14 +79,11 @@ class OrderController extends Controller
 //		    $phones[$key]['client_description'] = $val->getClient()->getDescription();
 	    }
 
-//	    echo '<pre>';
-//	    print_r($phones);
-//	    echo '</pre>';
-
         return $this->render('order/new.html.twig', array(
             'order' => $order,
 	        'phones' => $phones,
 	        'voditel_send' => $voditel_send,
+	        'producer_send' => $producer_send,
 //            'form' => $form->createView(),
         ));
     }

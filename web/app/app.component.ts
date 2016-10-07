@@ -13,16 +13,20 @@ import { DataService } from './data.service';
 
 export class AppComponent implements OnInit {
 
-    // стартовые значения селекта
-
     private selected_phone : string = "";
 
     private phones : any;
     private voditel_send : any;
+    private producer_send : any;
     private id_client : string = "";
     private name_client : string = "";
     private phone_client : string = "";
     private client_description : string = "";
+
+    private add_new_adress_show: boolean = false;
+
+    private new_adress : string;
+    private new_adress_arr : string[] = [];
 
     private client;
     private o_phones : string;
@@ -30,11 +34,31 @@ export class AppComponent implements OnInit {
     private o_adress : string;
     private o_ovoditel_name : string;
     private o_ovoditel_id : string;
+    private o_producer_send_id : string;
+    private o_producer_send_title : string;
+    private  o_adress_from: string = '';
 
 
 
     constructor ( private data : DataService ) { }
 
+
+
+    add_new_adress_shows(){
+        this.add_new_adress_show = true;
+    }
+
+    add_new_adress(){
+        var new_adress = this.new_adress;
+        if(new_adress.length > 0){
+            this.new_adress_arr.push(new_adress);
+            this.new_adress = '';
+            this.add_new_adress_show = false;
+            this.client.adreses.push((new_adress));
+
+            // тут делае запись нвого адреса в базе;
+        }
+    }
 
     // метод сброса параметров заказа
     sbros(){
@@ -81,9 +105,14 @@ export class AppComponent implements OnInit {
         var phones = JSON.parse ( $ ( '.phones' ).val () );
         this.phones = phones;
         this.data.setComplexList_phone ( phones );
+
         var voditel_send = JSON.parse($('.voditel_send').val());
         this.voditel_send = voditel_send;
         this.data.setComplexList_voditel_send ( voditel_send );
+
+        var producer_send = JSON.parse($('.producer_send').val());
+        this.producer_send = producer_send;
+        this.data.setComplexList_producer_send ( producer_send );
     }
 
     clear_info_client(){
@@ -119,6 +148,13 @@ export class AppComponent implements OnInit {
 
          console.log('Deselected: ' + item.value + ', ' + item.label);
         //this.clear_info_client();
+    }
+
+    //Установка производителя заказа
+    onSelected_producer_send(item){
+        this.producer_send_id = item.value;
+        this.producer_send_title = item.label;
+
     }
 
 }
