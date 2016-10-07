@@ -15,7 +15,7 @@
 						(opened)="onSelectOpened()"
 						(closed)="onSelectClosed()"
 						(selected)="onSelected_phone($event)"
-						(deselected)="onDeselected($event)"
+						(deselected)="onDeselected_phone($event)"
 						[allowClear]="true">
 					</ng-select>
 
@@ -27,19 +27,13 @@
 
 
 	<div class="row">
-
 		<div class="col-xs-3">
-			<div *ngIf="client != undefined" class="wheat p-a-1">
+			<div *ngIf="client != undefined && client != true" class="lavanda p-a-1">
 				<!--{{client|json}}-->
-
 				<h5>Информация о клиенте</h5>
 				<div>ФИО:
-
 					<span href="#">{{client.name}}</span>
 				</div>
-
-
-
 
 				<div> Телефоны:
 					<ul class="p-l-2">
@@ -50,31 +44,32 @@
 				<div>Адреса:
 					<ul class="p-l-2">
 						<li class="m-b-05" *ngFor='let adress of client.adreses'><span class=" text-primary pointer"
-						                                                               (click)="addAdress(adress)"><i
-							class="mdi mdi-plus-box"></i> {{adress}}</span></li>
+						 (click)="addAdress(adress)">
+							<i class="mdi mdi-plus-box"></i> {{adress}}</span></li>
 					</ul>
 
 				</div>
 
-				<div>
+				<div class="m-b-1">
 					Описание:
 					{{client.description}}
 				</div>
 				<div class="clearfix"></div>
+				<button (click)="clear_info_client()" class="btn btn-danger">Сброс</button>
 				<button (click)="addInfo()" class="btn btn-success pull-xs-right">Заполнить</button>
 				<div class="clearfix"></div>
 			</div>
 
 			<hr>
-			<h5>Новый Клиент</h5>
-			<input class="form-control m-y-1" type="text" name="name" placeholder="ФИО">
+			<h5>Новый Клиент</h5>			<input class="form-control m-y-1" type="text" name="name" placeholder="ФИО">
 			<input class="form-control m-y-1" type="text" name="phone" placeholder="Phone">
 			<textarea class="form-control m-y-1" name="adress" placeholder="Адрес"></textarea>
 			<textarea name="description" class="form-control m-y-1" placeholder="Описание"></textarea>
+
 			<button class="btn btn-success pull-xs-right">Заполнить</button>
 		</div>
 
-		<div class="col-xs-5 bg-faded p-a-1">
+		<div class="col-xs-5 wheat p-a-1">
 
 			<textarea class="form-control m-b-1" placeholder="Заказ"></textarea>
 			<input [(ngModel)]="o_adress_from" type="text" class="form-control m-b-1" placeholder="Откуда">

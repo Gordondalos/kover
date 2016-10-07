@@ -62,6 +62,14 @@ var AppComponent = (function () {
         this.voditel_send = voditel_send;
         this.data.setComplexList_voditel_send(voditel_send);
     };
+    AppComponent.prototype.clear_info_client = function () {
+        this.client = true;
+        this.o_phones = "";
+        this.o_name = "";
+        this.o_adress = "";
+        this.o_ovoditel_name = "";
+        this.o_ovoditel_id = "";
+    };
     AppComponent.prototype.onSelectOpened = function () {
         //console.log('Select dropdown opened.');
     };
@@ -76,8 +84,9 @@ var AppComponent = (function () {
         this.getHeroes(id_client);
         this.selected_phone = arr[0];
     };
-    AppComponent.prototype.onDeselected = function (item) {
+    AppComponent.prototype.onDeselected_phone = function (item) {
         console.log('Deselected: ' + item.value + ', ' + item.label);
+        //this.clear_info_client();
     };
     AppComponent = __decorate([
         core_1.Component({

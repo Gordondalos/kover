@@ -81,10 +81,18 @@ export class AppComponent implements OnInit {
         var phones = JSON.parse ( $ ( '.phones' ).val () );
         this.phones = phones;
         this.data.setComplexList_phone ( phones );
-
         var voditel_send = JSON.parse($('.voditel_send').val());
         this.voditel_send = voditel_send;
         this.data.setComplexList_voditel_send ( voditel_send );
+    }
+
+    clear_info_client(){
+        this.client = true;
+        this.o_phones = "";
+        this.o_name = "";
+        this.o_adress = "";
+        this.o_ovoditel_name = "";
+        this.o_ovoditel_id = "";
     }
 
 
@@ -107,8 +115,10 @@ export class AppComponent implements OnInit {
         this.selected_phone = arr[0];
     }
 
-    onDeselected(item) {
-        console.log('Deselected: ' + item.value + ', ' + item.label);
+    onDeselected_phone(item) {
+
+         console.log('Deselected: ' + item.value + ', ' + item.label);
+        //this.clear_info_client();
     }
 
 }
