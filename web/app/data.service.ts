@@ -7,17 +7,26 @@ import 'rxjs/add/operator/toPromise';
 export class DataService {
 
     phon : any = [];
+    voditel_send : any = [];
     heroesUrl : string = '';
 
     constructor ( private http : Http ) { }
 
-    setComplexList ( phones : any ) {
-        this.phon = phones;
+    setComplexList_phone ( data : any ) {
+        this.phon = data;
+    }
+
+    setComplexList_voditel_send( data : any ) {
+        this.voditel_send = data;
     }
 
 
-    getComplexList () : any {
+    getComplexList_phone () : any {
         return this.phon;
+    }
+
+    getComplexList_voditel_send () : any {
+        return this.voditel_send;
     }
 
     // getUserInfo = (id: number): any => {

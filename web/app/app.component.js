@@ -20,20 +20,22 @@ var AppComponent = (function () {
         this.phone_client = "";
         this.client_description = "";
     }
-    // Функция отслеживающая изменения в селекте
-    AppComponent.prototype.changed = function () {
-        this.id_client = this.selected;
-        this.getHeroes(+this.id_client);
-        this.sbros();
-    };
+    // метод сброса параметров заказа
     AppComponent.prototype.sbros = function () {
         this.o_phones = '';
         this.o_name = '';
         this.o_adress = '';
     };
+    // метод установки адреса заказа
     AppComponent.prototype.addAdress = function (adress) {
         this.o_adress = adress;
     };
+    // метод установки водителя в заказ
+    AppComponent.prototype.addVoditel = function (name, id) {
+        this.o_ovoditel_name = name;
+        this.o_ovoditel_id = id;
+    };
+    // Запрос аяксом нашего клиента из базы
     AppComponent.prototype.getHeroes = function (id) {
         var _this = this;
         this.data
@@ -42,6 +44,7 @@ var AppComponent = (function () {
             _this.client = JSON.parse(res._body).client;
         });
     };
+    // добавление и вывод телефонов в инфомацию о клиенте
     AppComponent.prototype.addInfo = function () {
         var phones = '';
         this.client.phones.forEach(function (phone) {
@@ -50,10 +53,14 @@ var AppComponent = (function () {
         this.o_phones = phones;
         this.o_name = this.client.name;
     };
+    // инициализация данных, они парсятся из твига
     AppComponent.prototype.ngOnInit = function () {
         var phones = JSON.parse($('.phones').val());
         this.phones = phones;
-        this.data.setComplexList(phones);
+        this.data.setComplexList_phone(phones);
+        var voditel_send = JSON.parse($('.voditel_send').val());
+        this.voditel_send = voditel_send;
+        this.data.setComplexList_voditel_send(voditel_send);
     };
     AppComponent.prototype.onSelectOpened = function () {
         //console.log('Select dropdown opened.');
@@ -61,8 +68,9 @@ var AppComponent = (function () {
     AppComponent.prototype.onSelectClosed = function () {
         //console.log('Select dropdown closed.');
     };
-    AppComponent.prototype.onSelected = function (item) {
-        console.log('Selected: ' + item.value + ', ' + item.label);
+    // метод повешанный на изменения выбранного телефона
+    AppComponent.prototype.onSelected_phone = function (item) {
+        //console.log('Selected: ' + item.value + ', ' + item.label);
         var arr = item.value.split('.');
         var id_client = arr[1];
         this.getHeroes(id_client);

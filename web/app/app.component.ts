@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     private selected_phone : string = "";
 
     private phones : any;
+    private voditel_send : any;
     private id_client : string = "";
     private name_client : string = "";
     private phone_client : string = "";
@@ -27,31 +28,33 @@ export class AppComponent implements OnInit {
     private o_phones : string;
     private o_name : string;
     private o_adress : string;
+    private o_ovoditel_name : string;
+    private o_ovoditel_id : string;
+
 
 
     constructor ( private data : DataService ) { }
 
 
-    // Функция отслеживающая изменения в селекте
-    public changed () : void {
-
-        this.id_client = this.selected;
-        this.getHeroes ( +this.id_client );
-        this.sbros();
-
-
-    }
-
+    // метод сброса параметров заказа
     sbros(){
         this.o_phones = '';
         this.o_name = '';
         this.o_adress = '';
     }
 
+    // метод установки адреса заказа
     addAdress ( adress ) {
         this.o_adress = adress;
     }
 
+    // метод установки водителя в заказ
+    addVoditel(name: string,id: string){
+        this.o_ovoditel_name = name;
+        this.o_ovoditel_id = id;
+    }
+
+    // Запрос аяксом нашего клиента из базы
     getHeroes ( id : number ) : void {
         this.data
             .getHer ( id )
@@ -61,6 +64,7 @@ export class AppComponent implements OnInit {
             } );
     }
 
+    // добавление и вывод телефонов в инфомацию о клиенте
     addInfo () {
         var phones = '';
         this.client.phones.forEach ( function ( phone ) {
@@ -70,15 +74,19 @@ export class AppComponent implements OnInit {
         this.o_phones = phones;
         this.o_name = this.client.name;
 
-
     }
 
-
+    // инициализация данных, они парсятся из твига
     ngOnInit () {
         var phones = JSON.parse ( $ ( '.phones' ).val () );
         this.phones = phones;
-        this.data.setComplexList ( phones );
+        this.data.setComplexList_phone ( phones );
+
+        var voditel_send = JSON.parse($('.voditel_send').val());
+        this.voditel_send = voditel_send;
+        this.data.setComplexList_voditel_send ( voditel_send );
     }
+
 
 
     onSelectOpened() {
@@ -90,8 +98,9 @@ export class AppComponent implements OnInit {
 
     }
 
-    onSelected(item) {
-        console.log('Selected: ' + item.value + ', ' + item.label);
+    // метод повешанный на изменения выбранного телефона
+    onSelected_phone(item) {
+        //console.log('Selected: ' + item.value + ', ' + item.label);
         var arr = item.value.split('.');
         var id_client = arr[1];
         this.getHeroes(id_client);
