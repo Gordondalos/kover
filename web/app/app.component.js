@@ -23,13 +23,30 @@ var AppComponent = (function () {
         this.o_adress_from = '';
     }
     AppComponent.prototype.add_new_client = function () {
-        if (this.client == undefined) {
-            this.client = [];
-            this.client.name = this.new_client_name;
-            this.client.phones = [this.new_client_phone];
-            this.client.adreses = [this.new_client_adress];
-            this.client.description = this.new_client_description;
+        if (this.new_client_name == undefined
+            || this.new_client_phone == undefined
+            || this.new_client_adress == undefined
+            || this.new_client_name.length < 2
+            || this.new_client_phone.length < 6
+            || this.new_client_adress.length < 3) {
+            alert('Заполните поля: Имя(от 2-x символов), Телефон(от 6), Адрес(от 3-х)');
+            return;
         }
+        this.client = [];
+        this.client.name = this.new_client_name;
+        this.client.phones = [this.new_client_phone];
+        this.client.adreses = [this.new_client_adress];
+        this.client.description = this.new_client_description;
+        var res = this.data.setNewClient(this.client)
+            .then(function (res) {
+            console.log(JSON.parse(res._body));
+        });
+    };
+    AppComponent.prototype.reset_new_client = function () {
+        this.new_client_name = '';
+        this.new_client_phone = '';
+        this.new_client_adress = '';
+        this.new_client_description = '';
     };
     AppComponent.prototype.add_new_adress_shows = function () {
         this.add_new_adress_show = true;

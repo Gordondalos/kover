@@ -2,6 +2,7 @@
 
 namespace ClientBundle\Controller;
 
+use ClientPhoneBundle\Entity\ClientPhone;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
@@ -31,6 +32,105 @@ class ClientController extends Controller
             'clients' => $clients,
         ));
     }
+
+
+    /*
+     * Create a new client ajax
+     *
+     */
+
+    public function  regNewClientAjaxAction(Request $request){
+
+	    $newClient = json_decode($_GET['client']);
+
+	    $phones  = $newClient->phones;
+        $adreses = $newClient->adreses;
+        $name = $newClient->name;
+        $description = $newClient->description;
+
+	    // Поищем клиента по имени
+	    $em = $this->getDoctrine()->getManager();
+
+	    $client = $em->getRepository('ClientBundle:Client')->findByName($name);
+
+	    if(empty($client)){
+		    $client = new Client();
+		    $client->setName($name);
+	    }else{
+		    $client = $client[0];
+	    }
+
+	    if(!empty($client->getDescription())){
+		    $newDes = $client->getDescription()." ".$description;
+		    $client->setDescription($newDes);
+	    }else{
+		    $client->setDescription($description);
+	    }
+
+	    $em->persist($client);
+	    $em->flush();
+
+	    $client_id = $client->getId();
+
+	    foreach ($phones as $phone){
+		    $clientPhone = $em->getRepository('ClientPhoneBundle:ClientPhone')->findBy(array(
+			    'phone' => $phone,
+			    'client'=>$client
+		    ));
+		    if(!empty($clientPhone)){
+		    	continue;
+		    }
+	    	$newPhone = new ClientPhone();
+		    $newPhone->setClient($client);
+		    $newPhone->setPhone($phone);
+		    $em->persist($newPhone);
+		    $em->flush();
+	    }
+
+	    foreach ($adreses as $adress){
+		    $clientAdress = $em->getRepository('ClientAdressBundle:ClientAdress')->findBy(array(
+			    'adress' => $adress,
+			    'client'=>$client
+		    ));
+		    if(!empty($clientAdress)){
+			    continue;
+		    }
+	    	$newAdress = new ClientAdress();
+		    $newAdress->setClient($client);
+		    $newAdress->setAdress($adress);
+		    $em->persist($newAdress);
+		    $em->flush();
+	    }
+
+
+	    $clientPhone_info = $em->getRepository('ClientPhoneBundle:ClientPhone')->findByClient($client);
+
+
+	    $clientAdress_info = $em->getRepository('ClientAdressBundle:ClientAdress')->findByClient($client);
+
+	    return $this->json($clientAdress_info);
+
+	    $client_info['id'] = $client->getId();
+	    $client_info['name'] = $client->getName();
+	    $client_info['description'] = $client->getDescription();
+
+	    $sentAdress = Array();
+	    foreach ($clientAdress_info as $adres){
+		    $sentAdress[]['adress']= $adres;
+	    }
+
+	    $sentPhone = Array();
+	    foreach ($clientPhone_info as $phone){
+		    $sentAdress[]['phone']= $phone;
+	    }
+
+	    $result = array_merge($client_info, $sentAdress, $sentPhone);
+
+	    return $this->json(array('client' => $result));
+
+
+    }
+
 
     /**
      * Creates a new Client entity.

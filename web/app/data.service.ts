@@ -13,6 +13,21 @@ export class DataService {
 
     constructor ( private http : Http ) { }
 
+    // Возвращает новые данные по клиенту
+    setNewClient(client: any) : Promise<any> {
+        let mystringsend = {
+            'phones':client.phones,
+            'adreses':client.adreses,
+            'name':client.name,
+            'description':client.description
+        };
+        var regNewClientUrl = "/client/client/reg_new_client_ajax?client=" + JSON.stringify(mystringsend);
+        return this.http.get(regNewClientUrl).toPromise ();
+    }
+
+
+
+
     setComplexList_phone ( data : any ) {
         this.phon = data;
     }
@@ -48,7 +63,6 @@ export class DataService {
         console.log ( this.heroesUrl );
         return this.http.get ( this.heroesUrl )
             .toPromise ();
-
     }
 
 

@@ -13,6 +13,10 @@ client_get:
    defaults: { _controller: "ClientBundle:Client:get" }
    methods:  [GET, POST]
 
+reg_new_client_ajax:
+    path: /reg_new_client_ajax
+    defaults: { _controller: "ClientBundle:Client:regNewClientAjax" }
+    methods:  [GET, POST]
 
 client_new:
     path:     /new

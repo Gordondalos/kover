@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
+import { isUndefined } from "util";
 
 
 @Component ( {
@@ -11,10 +12,10 @@ import { DataService } from './data.service';
 
 export class AppComponent implements OnInit {
 
-   private new_client_name: string;
-   private new_client_phone: string;
-   private new_client_adress: string;
-   private new_client_description: string;
+    private new_client_name : string;
+    private new_client_phone : string;
+    private new_client_adress : string;
+    private new_client_description : string;
 
 
     private selected_phone : string = "";
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit {
     private phone_client : string = "";
     private client_description : string = "";
 
-    private add_new_adress_show: boolean = false;
+    private add_new_adress_show : boolean = false;
 
     private new_adress : string;
     private new_adress_arr : string[] = [];
@@ -40,45 +41,65 @@ export class AppComponent implements OnInit {
     private o_ovoditel_id : string;
     private o_producer_send_id : string;
     private o_producer_send_title : string;
-    private  o_adress_from: string = '';
+    private o_adress_from : string = '';
 
 
-
-    constructor ( private data : DataService) { }
-
-
-    add_new_client(){
-
-        if(this.client == undefined){
-            this.client = [];
-            this.client.name = this.new_client_name;
-            this.client.phones = [this.new_client_phone];
-            this.client.adreses = [this.new_client_adress];
-            this.client.description = this.new_client_description;
+    constructor ( private data : DataService ) { }
 
 
+    add_new_client () {
+        if(
+             this.new_client_name == undefined
+            || this.new_client_phone == undefined
+            || this.new_client_adress == undefined
+            || this.new_client_name.length < 2
+            || this.new_client_phone.length < 6
+            || this.new_client_adress.length < 3
+        ){
+            alert('Заполните поля: Имя(от 2-x символов), Телефон(от 6), Адрес(от 3-х)');
+            return;
         }
+
+        this.client = [];
+        this.client.name = this.new_client_name;
+        this.client.phones = [ this.new_client_phone ];
+        this.client.adreses = [ this.new_client_adress ];
+        this.client.description = this.new_client_description;
+
+
+        let res = this.data.setNewClient(this.client)
+            .then ( res => {
+            console.log(JSON.parse(res._body));
+             });
+
+
     }
 
+    reset_new_client () {
+        this.new_client_name = '';
+        this.new_client_phone = '' ;
+        this.new_client_adress = '';
+        this.new_client_description = '';
+    }
 
-    add_new_adress_shows(){
+    add_new_adress_shows () {
         this.add_new_adress_show = true;
     }
 
-    add_new_adress(){
+    add_new_adress () {
         var new_adress = this.new_adress;
-        if(new_adress.length > 0){
-            this.new_adress_arr.push(new_adress);
+        if ( new_adress.length > 0 ) {
+            this.new_adress_arr.push ( new_adress );
             this.new_adress = '';
             this.add_new_adress_show = false;
-            this.client.adreses.push((new_adress));
+            this.client.adreses.push ( (new_adress) );
 
             // тут делае запись нвого адреса в базе;
         }
     }
 
     // метод сброса параметров заказа
-    sbros(){
+    sbros () {
         this.o_phones = '';
         this.o_name = '';
         this.o_adress = '';
@@ -90,7 +111,7 @@ export class AppComponent implements OnInit {
     }
 
     // метод установки водителя в заказ
-    addVoditel(name: string,id: string){
+    addVoditel ( name : string, id : string ) {
         this.o_ovoditel_name = name;
         this.o_ovoditel_id = id;
     }
@@ -123,16 +144,16 @@ export class AppComponent implements OnInit {
         this.phones = phones;
         this.data.setComplexList_phone ( phones );
 
-        var voditel_send = JSON.parse($('.voditel_send').val());
+        var voditel_send = JSON.parse ( $ ( '.voditel_send' ).val () );
         this.voditel_send = voditel_send;
         this.data.setComplexList_voditel_send ( voditel_send );
 
-        var producer_send = JSON.parse($('.producer_send').val());
+        var producer_send = JSON.parse ( $ ( '.producer_send' ).val () );
         this.producer_send = producer_send;
         this.data.setComplexList_producer_send ( producer_send );
     }
 
-    clear_info_client(){
+    clear_info_client () {
         this.client = true;
         this.o_phones = "";
         this.o_name = "";
@@ -142,33 +163,32 @@ export class AppComponent implements OnInit {
     }
 
 
-
-    onSelectOpened() {
+    onSelectOpened () {
         //console.log('Select dropdown opened.');
     }
 
-    onSelectClosed() {
+    onSelectClosed () {
         //console.log('Select dropdown closed.');
 
     }
 
     // метод повешанный на изменения выбранного телефона
-    onSelected_phone(item) {
+    onSelected_phone ( item ) {
         //console.log('Selected: ' + item.value + ', ' + item.label);
-        var arr = item.value.split('.');
-        var id_client = arr[1];
-        this.getHeroes(id_client);
-        this.selected_phone = arr[0];
+        var arr = item.value.split ( '.' );
+        var id_client = arr[ 1 ];
+        this.getHeroes ( id_client );
+        this.selected_phone = arr[ 0 ];
     }
 
-    onDeselected_phone(item) {
+    onDeselected_phone ( item ) {
 
-         console.log('Deselected: ' + item.value + ', ' + item.label);
+        console.log ( 'Deselected: ' + item.value + ', ' + item.label );
         //this.clear_info_client();
     }
 
     //Установка производителя заказа
-    onSelected_producer_send(item){
+    onSelected_producer_send ( item ) {
         this.o_producer_send_id = item.value;
         this.o_producer_send_title = item.label;
 

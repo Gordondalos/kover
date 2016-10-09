@@ -32,8 +32,9 @@
 			<div *ngIf="client != undefined && client != true" class="lavanda p-a-1">
 				<!--{{client|json}}-->
 				<b>Информация о клиенте</b>
-				<div class="m-b-1">ФИО:
-					<span href="#">{{client.name}}</span>
+				<div class="m-b-1">ФИО: <a target="_blank" href="/client/client/{{client.id}}/show"><b href="#">{{client.name}}</b></a>
+
+
 				</div>
 
 				<div> Телефоны:
@@ -79,7 +80,8 @@
 			<textarea [(ngModel)]="new_client_adress" class="form-control m-y-1" name="adress" placeholder="Адрес"></textarea>
 			<textarea [(ngModel)]="new_client_description" name="description" class="form-control m-y-1" placeholder="Описание"></textarea>
 
-			<button (click)="add_new_client()" class="btn btn-success pull-xs-right">Заполнить</button>
+			<button class="btn btn-danger" (click)="reset_new_client()">Сброс</button>
+			<button (click)="add_new_client()" class="btn btn-success pull-xs-right">Записать</button>
 		</div>
 
 		<div class="col-xs-5 wheat p-a-1">
