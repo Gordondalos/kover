@@ -29,6 +29,40 @@ class ClientAdressController extends Controller
         ));
     }
 
+
+    public function newAdressAction(Request $request){
+
+	    $content = json_decode($request->getContent());
+	    $newAdress = $content->newAdress;
+	    $client_id = $content->client_id;
+
+	    $clientAdress = new ClientAdress();
+	    $clientAdress->setAdress($newAdress);
+	    $em = $this->getDoctrine()->getManager();
+	    $client = $em->getRepository('ClientBundle:Client')->findById($client_id);
+	    $clientAdress->setClient($client[0]);
+
+
+	    // Проверим нет ли уже такого адреса у клиента
+
+	    $res =  $client_adress = $em->getRepository('ClientAdressBundle:ClientAdress')->findBy(array(
+	    	'client'=>$client,
+		    'adress'=>$newAdress
+	    ));
+
+	    if(empty($res)){
+		    $em->persist($clientAdress);
+		    $em->flush();
+		    $resp = '200';
+	    }else{
+		    $resp = '300';
+
+	    }
+
+	    return $this->json(array('resp'=> $resp));
+    }
+
+
     /**
      * Creates a new ClientAdress entity.
      *

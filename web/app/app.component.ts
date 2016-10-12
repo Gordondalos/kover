@@ -69,7 +69,9 @@ export class AppComponent implements OnInit {
 
         let res = this.data.setNewClient(this.client)
             .then ( res => {
-            console.log(JSON.parse(res._body));
+                var regKlient = JSON.parse(res._body).client;
+            // Получим всю информацию о данном клиенте и установим ее
+                this.getHeroes(regKlient.id);
              });
 
 
@@ -87,6 +89,7 @@ export class AppComponent implements OnInit {
     }
 
     add_new_adress () {
+        let that = this;
         var new_adress = this.new_adress;
         if ( new_adress.length > 0 ) {
             this.new_adress_arr.push ( new_adress );
@@ -94,9 +97,16 @@ export class AppComponent implements OnInit {
             this.add_new_adress_show = false;
             this.client.adreses.push ( (new_adress) );
 
-            // тут делае запись нвого адреса в базе;
+            // тут далее запись нвого адреса в базе;
+
+            var res = that.data.setNewAdress(new_adress,that.client.id);
+           // console.log(res);
+
+
         }
     }
+
+
 
     // метод сброса параметров заказа
     sbros () {

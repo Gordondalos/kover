@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
+import {Http, Headers, RequestOptions, Response } from '@angular/http';
 
 
 @Injectable ()
@@ -13,16 +13,50 @@ export class DataService {
 
     constructor ( private http : Http ) { }
 
-    // Возвращает новые данные по клиенту
-    setNewClient(client: any) : Promise<any> {
+    // Установим новый адресс
+
+    setNewAdress ( newAdress : string, client_id : number ) {
+
+
         let mystringsend = {
-            'phones':client.phones,
-            'adreses':client.adreses,
-            'name':client.name,
-            'description':client.description
+            'newAdress' : newAdress,
+            'client_id' : client_id
         };
-        var regNewClientUrl = "/client/client/reg_new_client_ajax?client=" + JSON.stringify(mystringsend);
-        return this.http.get(regNewClientUrl).toPromise ();
+        let body = JSON.stringify ( mystringsend );
+        let headers = new Headers ( { 'Content-Type' : 'application/json' } );
+        let options = new RequestOptions ( { headers : headers } );
+        let Url = '/client_adress/clientadress/new_adress';
+        return this.http.post ( Url, body, options )
+            .toPromise ()
+            .then(this.extractData);
+
+    }
+
+    private extractData(res: Response) {
+        let resp = res.json().resp;
+        if(resp == 200){
+            alert('Успешно');
+
+
+        }else{
+            alert('Неудача');
+        }
+
+    }
+
+
+    // Устанавливает новые данные по клиенту и возвращает их
+    setNewClient ( client : any ) : Promise<any> {
+        let mystringsend = {
+            'phones' : client.phones,
+            'adreses' : client.adreses,
+            'name' : client.name,
+            'description' : client.description
+        };
+        var regNewClientUrl = "/client/client/reg_new_client_ajax?client=" + JSON.stringify ( mystringsend );
+        return this.http.get ( regNewClientUrl )
+            .toPromise ();
+
     }
 
 
@@ -32,11 +66,11 @@ export class DataService {
         this.phon = data;
     }
 
-    setComplexList_voditel_send( data : any ) {
+    setComplexList_voditel_send ( data : any ) {
         this.voditel_send = data;
     }
 
-    setComplexList_producer_send( data : any ) {
+    setComplexList_producer_send ( data : any ) {
         this.producer_send = data;
     }
 
@@ -53,18 +87,12 @@ export class DataService {
         return this.voditel_send;
     }
 
-    // getUserInfo = (id: number): any => {
-    //     return fetch(`/qweqwe/${id}`)
-    //         .then((response) => response.json())
-    // };
-
     getHer ( id : number ) : Promise<any> {
         this.heroesUrl = "/client/client/" + id + "/get";
         console.log ( this.heroesUrl );
         return this.http.get ( this.heroesUrl )
             .toPromise ();
     }
-
 
 
     private handleError ( error : any ) : Promise<any> {

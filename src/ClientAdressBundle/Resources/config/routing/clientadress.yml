@@ -8,6 +8,11 @@ clientadress_show:
     defaults: { _controller: "ClientAdressBundle:ClientAdress:show" }
     methods:  GET
 
+new_adress:
+    path:     /new_adress
+    defaults: { _controller: "ClientAdressBundle:ClientAdress:newAdress" }
+    methods:  [GET, POST]
+
 clientadress_new:
     path:     /new
     defaults: { _controller: "ClientAdressBundle:ClientAdress:new" }

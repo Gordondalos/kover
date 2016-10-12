@@ -23,6 +23,7 @@ var AppComponent = (function () {
         this.o_adress_from = '';
     }
     AppComponent.prototype.add_new_client = function () {
+        var _this = this;
         if (this.new_client_name == undefined
             || this.new_client_phone == undefined
             || this.new_client_adress == undefined
@@ -39,7 +40,9 @@ var AppComponent = (function () {
         this.client.description = this.new_client_description;
         var res = this.data.setNewClient(this.client)
             .then(function (res) {
-            console.log(JSON.parse(res._body));
+            var regKlient = JSON.parse(res._body).client;
+            // Получим всю информацию о данном клиенте и установим ее
+            _this.getHeroes(regKlient.id);
         });
     };
     AppComponent.prototype.reset_new_client = function () {
@@ -52,12 +55,15 @@ var AppComponent = (function () {
         this.add_new_adress_show = true;
     };
     AppComponent.prototype.add_new_adress = function () {
+        var that = this;
         var new_adress = this.new_adress;
         if (new_adress.length > 0) {
             this.new_adress_arr.push(new_adress);
             this.new_adress = '';
             this.add_new_adress_show = false;
             this.client.adreses.push((new_adress));
+            // тут далее запись нвого адреса в базе;
+            var res = that.data.setNewAdress(new_adress, that.client.id);
         }
     };
     // метод сброса параметров заказа
