@@ -14,11 +14,9 @@ import {SelectModule} from 'angular2-select';
         FormsModule,
         ReactiveFormsModule,
         SelectModule
-
     ],
     declarations : [
         AppComponent,
-
     ],
 
     bootstrap : [ AppComponent ]

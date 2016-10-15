@@ -14,13 +14,13 @@ var AppComponent = (function () {
     function AppComponent(data) {
         this.data = data;
         this.selected_phone = "";
+        this.add_new_adress_show = false;
+        this.new_adress_arr = [];
+        this.o_adress_from = '';
         this.id_client = "";
         this.name_client = "";
         this.phone_client = "";
         this.client_description = "";
-        this.add_new_adress_show = false;
-        this.new_adress_arr = [];
-        this.o_adress_from = '';
     }
     AppComponent.prototype.add_new_client = function () {
         var _this = this;

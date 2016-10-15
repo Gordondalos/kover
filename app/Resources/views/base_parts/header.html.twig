@@ -9,4 +9,28 @@
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     {#<link href="{{ asset('css/select2.min.css') }}" rel="stylesheet" />#}
     <link href="{{ asset('css/main.css') }}" rel="stylesheet" />
+
+
+    <script src="{{ asset('js/jquery.min.js') }}" ></script>
+    <script src="{{ asset('js/tether.min.js') }}" ></script>
+    <script src=" {{ asset('js/bootstrap.min.js') }}"></script>
+    <script src=" {{ asset('js/select2.min.js') }}"></script>
+
+
+
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+
+    <script src=" {{ asset('node_modules/core-js/client/shim.min.js') }}"></script>
+    <script src=" {{ asset('node_modules/zone.js/dist/zone.js') }}"></script>
+    <script src=" {{ asset('node_modules/reflect-metadata/Reflect.js') }}"></script>
+    <script src=" {{ asset('node_modules/systemjs/dist/system.src.js') }}"></script>
+
+    <!-- 2. Configure SystemJS -->
+    <script src=" {{ asset('systemjs.config.js') }}"></script>
+
+    {% block javascripts %}{% endblock %}
+
+
+
 </head>

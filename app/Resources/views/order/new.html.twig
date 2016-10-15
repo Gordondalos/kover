@@ -2,6 +2,10 @@
 
 {% block body %}
 
+    <script>
+        System.import('app').catch(function(err){ console.error(err); });
+    </script>
+
     <input class="phones" type="hidden" value='{{ phones|json_encode()|raw }}'>
     <input class="voditel_send" type="hidden" value='{{ voditel_send|json_encode()|raw }}'>
     <input class="producer_send" type="hidden" value='{{ producer_send|json_encode()|raw }}'>
