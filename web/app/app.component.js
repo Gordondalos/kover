@@ -56,15 +56,29 @@ var AppComponent = (function () {
     };
     AppComponent.prototype.add_new_adress = function () {
         var that = this;
-        var new_adress = this.new_adress;
+        var new_adress = this.new_adress; // Поулчил новый адрес
         if (new_adress.length > 0) {
-            this.new_adress_arr.push(new_adress);
-            this.new_adress = '';
-            this.add_new_adress_show = false;
-            this.client.adreses.push((new_adress));
-            // тут далее запись нвого адреса в базе;
-            var res = that.data.setNewAdress(new_adress, that.client.id);
+            this.new_adress_arr.push(new_adress); // Запушили его в новый массив
+            this.add_new_adress_show = false; // Скрываем форму для записи абреса
+            var result = that.data.setNewAdress(new_adress, that.client.id); // Запишем в базу инфо о адресе и адресс клиентам
+            result.then(function (res) {
+                var resp = res.json().resp;
+                if (resp === '200') {
+                    // alert('Успешно');
+                    that.addNewAdress(that);
+                }
+                else {
+                    alert('Неудача');
+                    that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
+                }
+            }, function (err) {
+                console.log(err);
+            });
         }
+    };
+    AppComponent.prototype.addNewAdress = function (that) {
+        that.client.adreses.push((this.new_adress));
+        that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
     };
     // метод сброса параметров заказа
     AppComponent.prototype.sbros = function () {

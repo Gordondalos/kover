@@ -56,7 +56,6 @@ class ClientAdressController extends Controller
 		    $resp = '200';
 	    }else{
 		    $resp = '300';
-
 	    }
 
 	    return $this->json(array('resp'=> $resp));

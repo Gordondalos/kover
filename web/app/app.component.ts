@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from './data.service';
-import { isUndefined } from "util";
+import { Response } from "@angular/http";
 
 
 @Component ( {
@@ -43,9 +43,7 @@ export class AppComponent implements OnInit {
     private o_producer_send_title : string;
     private o_adress_from : string = '';
 
-
     constructor ( private data : DataService ) { }
-
 
     add_new_client () {
         if(
@@ -90,23 +88,33 @@ export class AppComponent implements OnInit {
 
     add_new_adress () {
         let that = this;
-        var new_adress = this.new_adress;
-        if ( new_adress.length > 0 ) {
-            this.new_adress_arr.push ( new_adress );
-            this.new_adress = '';
-            this.add_new_adress_show = false;
-            this.client.adreses.push ( (new_adress) );
-
-            // тут далее запись нвого адреса в базе;
-
-            var res = that.data.setNewAdress(new_adress,that.client.id);
-           // console.log(res);
-
-
+        var new_adress = this.new_adress; // Поулчил новый адрес
+        if ( new_adress.length > 0 ) { // Если он не пустой
+            this.new_adress_arr.push ( new_adress ); // Запушили его в новый массив
+            this.add_new_adress_show = false; // Скрываем форму для записи абреса
+            var result = that.data.setNewAdress(new_adress, that.client.id); // Запишем в базу инфо о адресе и адресс клиентам
+            result.then(
+                function(res) {
+                    let resp = res.json().resp;
+                    if(resp === '200'){
+                        // alert('Успешно');
+                        that.addNewAdress(that);
+                    }else{
+                        alert('Неудача');
+                        that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
+                    }
+                },
+                function(err) {
+                    console.log(err);
+                }
+            );
         }
     }
 
-
+    private addNewAdress(that) {
+        that.client.adreses.push ( (this.new_adress) );
+        that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
+    }
 
     // метод сброса параметров заказа
     sbros () {

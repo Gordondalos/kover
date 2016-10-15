@@ -17,7 +17,6 @@ export class DataService {
 
     setNewAdress ( newAdress : string, client_id : number ) {
 
-
         let mystringsend = {
             'newAdress' : newAdress,
             'client_id' : client_id
@@ -28,20 +27,6 @@ export class DataService {
         let Url = '/client_adress/clientadress/new_adress';
         return this.http.post ( Url, body, options )
             .toPromise ()
-            .then(this.extractData);
-
-    }
-
-    private extractData(res: Response) {
-        let resp = res.json().resp;
-        if(resp == 200){
-            alert('Успешно');
-
-
-        }else{
-            alert('Неудача');
-        }
-
     }
 
 
@@ -56,7 +41,6 @@ export class DataService {
         var regNewClientUrl = "/client/client/reg_new_client_ajax?client=" + JSON.stringify ( mystringsend );
         return this.http.get ( regNewClientUrl )
             .toPromise ();
-
     }
 
 
