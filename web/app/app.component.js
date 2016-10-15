@@ -13,15 +13,83 @@ var data_service_1 = require('./data.service');
 var AppComponent = (function () {
     function AppComponent(data) {
         this.data = data;
-        this.selected_phone = "";
+        this.selected_phone = ""; // Тлефон с которого звонили
         this.add_new_adress_show = false;
         this.new_adress_arr = [];
         this.o_adress_from = '';
+        this.o_adress_from_id = '';
         this.id_client = "";
         this.name_client = "";
         this.phone_client = "";
         this.client_description = "";
+        this.order = "";
+        this.summa_dostavki = 150;
+        this.summa_vosnagrajdeniya = 50;
+        this.summa_itog = this.summa_dostavki + this.summa_vosnagrajdeniya;
     }
+    // инициализация данных, они парсятся из твига
+    AppComponent.prototype.ngOnInit = function () {
+        var phones = JSON.parse($('.phones').val());
+        this.phones = phones;
+        this.data.setComplexList_phone(phones);
+        var voditel_send = JSON.parse($('.voditel_send').val());
+        this.voditel_send = voditel_send;
+        this.data.setComplexList_voditel_send(voditel_send);
+        var producer_send = JSON.parse($('.producer_send').val());
+        this.producer_send = producer_send;
+        this.data.setComplexList_producer_send(producer_send);
+    };
+    //Метод добавления нового заказа
+    AppComponent.prototype.addNewOrder = function () {
+        var send_order_arr = {};
+        send_order_arr['o_phones'] = this.o_phones;
+        send_order_arr['o_name'] = this.o_name;
+        send_order_arr['o_adress'] = this.o_adress;
+        send_order_arr['o_ovoditel_name'] = this.o_ovoditel_name;
+        send_order_arr['o_ovoditel_id'] = this.o_ovoditel_id;
+        send_order_arr['o_adress_from'] = this.o_adress_from;
+        send_order_arr['client'] = this.client;
+        send_order_arr['order'] = this.order;
+        send_order_arr['selected_phone'] = this.selected_phone;
+        send_order_arr['summa_dostavki'] = this.summa_dostavki;
+        send_order_arr['summa_vosnagrajdeniya'] = this.summa_vosnagrajdeniya;
+        send_order_arr['summa_itog'] = this.summa_itog;
+        var myPromis = this.data.setNewOrder(JSON.stringify(send_order_arr))
+            .then(function (res) {
+            var data = JSON.parse(res._body).res;
+            console.log(data);
+            if (data === '200') {
+                window.location = "/order/";
+            }
+            else {
+                alert('Ошибка при добавлении заказа');
+            }
+        });
+    };
+    AppComponent.prototype.getBoder = function (properties, val) {
+        if (properties && properties.length > val) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    };
+    //Включаем кнопку если заполнены все атрибуты
+    AppComponent.prototype.getAllDataforOrder = function () {
+        if ((this.o_phones && this.o_phones.length > 6)
+            && (this.o_name && this.o_name.length != 0)
+            && (this.o_adress && this.o_adress.length > 2)
+            && (this.o_ovoditel_name && this.o_ovoditel_name.length > 2)
+            && (this.o_adress_from && this.o_adress_from.length > 2)
+            && (this.order && this.order.length > 2)
+            && (this.selected_phone && this.selected_phone.length > 6)) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    };
+    //Метод добавления нового клиента
     AppComponent.prototype.add_new_client = function () {
         var _this = this;
         if (this.new_client_name == undefined
@@ -45,15 +113,18 @@ var AppComponent = (function () {
             _this.getHeroes(regKlient.id);
         });
     };
+    // метод сброса заполненного клиента
     AppComponent.prototype.reset_new_client = function () {
         this.new_client_name = '';
         this.new_client_phone = '';
         this.new_client_adress = '';
         this.new_client_description = '';
     };
+    //метод отображающий форму добавления нового адреса
     AppComponent.prototype.add_new_adress_shows = function () {
         this.add_new_adress_show = true;
     };
+    //метод добавляющий новый адресс в базе
     AppComponent.prototype.add_new_adress = function () {
         var that = this;
         var new_adress = this.new_adress; // Поулчил новый адрес
@@ -65,7 +136,8 @@ var AppComponent = (function () {
                 var resp = res.json().resp;
                 if (resp === '200') {
                     // alert('Успешно');
-                    that.addNewAdress(that);
+                    that.client.adreses.push((new_adress));
+                    that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
                 }
                 else {
                     alert('Неудача');
@@ -75,10 +147,6 @@ var AppComponent = (function () {
                 console.log(err);
             });
         }
-    };
-    AppComponent.prototype.addNewAdress = function (that) {
-        that.client.adreses.push((this.new_adress));
-        that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
     };
     // метод сброса параметров заказа
     AppComponent.prototype.sbros = function () {
@@ -113,18 +181,7 @@ var AppComponent = (function () {
         this.o_phones = phones;
         this.o_name = this.client.name;
     };
-    // инициализация данных, они парсятся из твига
-    AppComponent.prototype.ngOnInit = function () {
-        var phones = JSON.parse($('.phones').val());
-        this.phones = phones;
-        this.data.setComplexList_phone(phones);
-        var voditel_send = JSON.parse($('.voditel_send').val());
-        this.voditel_send = voditel_send;
-        this.data.setComplexList_voditel_send(voditel_send);
-        var producer_send = JSON.parse($('.producer_send').val());
-        this.producer_send = producer_send;
-        this.data.setComplexList_producer_send(producer_send);
-    };
+    // метод очистки информации о клиенте
     AppComponent.prototype.clear_info_client = function () {
         this.client = true;
         this.o_phones = "";
@@ -133,13 +190,15 @@ var AppComponent = (function () {
         this.o_ovoditel_name = "";
         this.o_ovoditel_id = "";
     };
+    // метод на открытие селекта
     AppComponent.prototype.onSelectOpened = function () {
         //console.log('Select dropdown opened.');
     };
+    //метод на закрытие селекта
     AppComponent.prototype.onSelectClosed = function () {
         //console.log('Select dropdown closed.');
     };
-    // метод повешанный на изменения выбранного телефона
+    // метод  на изменения выбранного телефона
     AppComponent.prototype.onSelected_phone = function (item) {
         //console.log('Selected: ' + item.value + ', ' + item.label);
         var arr = item.value.split('.');
@@ -147,14 +206,14 @@ var AppComponent = (function () {
         this.getHeroes(id_client);
         this.selected_phone = arr[0];
     };
+    //метод потери нажимающий на крестик селекта
     AppComponent.prototype.onDeselected_phone = function (item) {
         console.log('Deselected: ' + item.value + ', ' + item.label);
         //this.clear_info_client();
     };
     //Установка производителя заказа
     AppComponent.prototype.onSelected_producer_send = function (item) {
-        this.o_producer_send_id = item.value;
-        this.o_producer_send_title = item.label;
+        this.o_adress_from = item.label;
     };
     AppComponent = __decorate([
         core_1.Component({

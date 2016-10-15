@@ -12,7 +12,7 @@ OrderBundle\Entity\Order:
             nullable: false
         dateFinish:
             type: datetime
-            nullable: false
+            nullable: true
         description:
             type: text
             nullable: true
@@ -38,18 +38,17 @@ OrderBundle\Entity\Order:
         price_deliver:
             type: integer
             nullable: true
-
-    oneToOne:
         man_doit:
             targetEntity: UserBundle\Entity\User
-
-    man_created:
-            man_doit:
-                targetEntity: UserBundle\Entity\User
+            nullable: false
+        man_created:
+            targetEntity: UserBundle\Entity\User
+            nullable: false
 
     oneToOne:
         clientsOrderStatus:
             targetEntity: ClientsOrderStatusBundle\Entity\ClientsOrderStatus
+            nullable: false
 
 
 

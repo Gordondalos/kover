@@ -13,6 +13,14 @@ order_new:
     defaults: { _controller: "OrderBundle:Order:new" }
     methods:  [GET, POST]
 
+set_new_order:
+    path: /set_new_order
+    defaults: {_controller: "OrderBundle:Order:setNewOeder"}
+    methods: [POST]
+
+
+
+
 order_edit:
     path:     /{id}/edit
     defaults: { _controller: "OrderBundle:Order:edit" }

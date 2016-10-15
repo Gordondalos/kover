@@ -31,6 +31,8 @@ class OrderController extends Controller
         ));
     }
 
+
+
     /**
      * Creates a new Order entity.
      *
@@ -87,6 +89,41 @@ class OrderController extends Controller
 //            'form' => $form->createView(),
         ));
     }
+
+	public function setNewOederAction(Request $request)
+	{
+		$data = json_decode($request->getContent());
+
+		$order = new Order();
+		// Устанвоим клиента
+		$client_id = $data->client->id;
+		$em = $this->getDoctrine()->getManager();
+		//$client = $em->getRepository('ClientBundle:Client')->findById($client_id);
+
+		$order->setClient($client_id);
+		$order->setPhone($data->selected_phone);
+		$order->setClientAdress($data->o_adress);
+		$order->setStatus(1);
+		$order->setProducts($data->order);
+		$order->setPriceTotal($data->summa_itog);
+		$order->setPriceDeliver($data->summa_dostavki);
+		$order->setPhone($data->o_phones);
+		$order->setDescription($request->getContent());
+		$order->setDateCreated(new \DateTime("now"));
+		$order->setManCreated($this->getUser()->getId());
+		$order->setManDoit($data->o_ovoditel_id);
+
+
+		try {
+			$em->persist($order);
+			$em->flush();
+			$res = '200';
+		} catch (Exception $e) {
+			$res = '300';
+		}
+
+		return $this->json(array('res'=>$res));
+	}
 
     /**
      * Finds and displays a Order entity.

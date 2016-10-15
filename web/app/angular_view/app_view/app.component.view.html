@@ -27,29 +27,29 @@
 			<div *ngIf="client != undefined && client != true" class="lavanda p-a-1">
 				<!--{{client|json}}-->
 				<b>Информация о клиенте</b>
-				<div class="m-b-1">ФИО: <a target="_blank" href="/client/client/{{client.id}}/show"><b href="#">{{client.name}}</b></a>
-
-
+				<div class="m-b-1">
+					ФИО: <a target="_blank" href="/client/client/{{client.id}}/show"><b href="#">{{client.name}}</b></a>
 				</div>
-
 				<div> Телефоны:
 					<ul class="p-l-2">
 						<li *ngFor='let phone of client.phones'>{{phone}}</li>
 					</ul>
-
 				</div>
-				<div> <span>Адреса:</span>
-					<i (click)="add_new_adress_shows()" class="pull-xs-right mdi f24 pointer text-success mdi-plus-box"></i>
+				<div><span>Адреса:</span>
+					<i (click)="add_new_adress_shows()"
+					   class="pull-xs-right mdi f24 pointer text-success mdi-plus-box"></i>
 					<div class="clearfix"></div>
 					<ul class="p-l-2">
-						<li class="m-b-05" *ngFor='let adress of client.adreses'><span class=" text-primary pointer"
-						 (click)="addAdress(adress)">
+						<li class="m-b-05" *ngFor='let adress of client.adreses'>
+							<span class=" text-primary pointer"
+							      (click)="addAdress(adress)">
 							<i class="mdi mdi-plus-box"></i> {{adress}}</span></li>
 					</ul>
 					<div class="clearfix"></div>
-					<div class="row m-x-0 m-b-1" *ngIf="add_new_adress_show == true" >
+					<div class="row m-x-0 m-b-1" *ngIf="add_new_adress_show == true">
 						<div class="input-group">
-							<input [(ngModel)]="new_adress" autofocus type="text" class="form-control" placeholder="Новый адресс">
+							<input [(ngModel)]="new_adress" autofocus type="text" class="form-control"
+							       placeholder="Новый адресс">
 							<span class="input-group-btn">
 					        <button (click)="add_new_adress()" class="btn btn-success" type="button">Go!</button>
 					      </span>
@@ -68,53 +68,91 @@
 				<div class="clearfix"></div>
 			</div>
 
-			<hr>
-			<h5>Новый Клиент</h5>			
-			<input [(ngModel)]="new_client_name" class="form-control m-y-1" type="text" name="name" placeholder="ФИО">
-			<input [(ngModel)]="new_client_phone" class="form-control m-y-1" type="text" name="phone" placeholder="Phone">
-			<textarea [(ngModel)]="new_client_adress" class="form-control m-y-1" name="adress" placeholder="Адрес"></textarea>
-			<textarea [(ngModel)]="new_client_description" name="description" class="form-control m-y-1" placeholder="Описание"></textarea>
 
-			<button class="btn btn-danger" (click)="reset_new_client()">Сброс</button>
-			<button (click)="add_new_client()" class="btn btn-success pull-xs-right">Записать</button>
+			<div class="bg-faded p-a-1">
+
+				<h5>Новый Клиент</h5>
+				<input [(ngModel)]="new_client_name" class="form-control m-y-1" type="text" name="name"
+				       placeholder="ФИО">
+				<input [(ngModel)]="new_client_phone" class="form-control m-y-1" type="text" name="phone"
+				       placeholder="Phone">
+				<textarea [(ngModel)]="new_client_adress" class="form-control m-y-1" name="adress"
+				          placeholder="Адрес"></textarea>
+				<textarea [(ngModel)]="new_client_description" name="description" class="form-control m-y-1"
+				          placeholder="Описание"></textarea>
+
+				<button class="btn btn-danger" (click)="reset_new_client()">Сброс</button>
+				<button (click)="add_new_client()" class="btn btn-success pull-xs-right">Записать</button>
+
+			</div>
 		</div>
 
 		<div class="col-xs-5 wheat p-a-1">
+			<div class="m-b-1 p-a-01" [ngClass]="{ bordercolor: getBoder(order, 3) }">
+				<textarea
+					[(ngModel)]="order" class="form-control"
+					placeholder="Заказ">
+				</textarea>
+			</div>
 
-			<textarea class="form-control m-b-1" placeholder="Заказ"></textarea>
 
 			<div class="row">
-				<div class="col-xs-6">
-					<b>Производитель:</b>
-					<ng-select
-						[options]="data.getComplexList_producer_send()"
-						(selected)="onSelected_producer_send($event)"
-						[allowClear]="true">
-					</ng-select>
-				</div>
-				<div class="col-xs-6">
-					<b>Частный адресс:</b>
-					<input [(ngModel)]="o_adress_from" type="text">
+				<div class="col-xs-12">
+					<b>Откуда:</b>
+					<div class="m-b-1 p-a-01" [ngClass]="{ bordercolor: getBoder(o_adress_from, 3) }">
+						<input [(ngModel)]="o_adress_from" type="text">
+					</div>
 				</div>
 			</div>
+
+			<div class="col-xs-12 col-md-6 p-x-0">
+				<span>Сумма доставки</span>
+				<input [(ngModel)]="summa_dostavki" type="text">
+			</div>
+			<div class="col-xs-12 col-md-6 p-x-0">
+				<span>Сумма Вознаграждения</span>
+				<input [(ngModel)]="summa_vosnagrajdeniya" type="text">
+			</div>
+			<div class="col-xs-12 col-md-4 p-x-0 m-t-1">
+				<b>Сумма доставки :</b>
+				{{summa_itog}}
+			</div>
+
+
 			<hr>
-
-
 			<div class="clearfix m-b-1"></div>
+			<div class="m-b-1 p-a-01" [ngClass]="{ bordercolor: getBoder(o_adress, 5) }">
+				<div>Адерес доставки: {{ o_adress }}</div>
+			</div>
 
-			<div class="m-b-1">Адерес доставки: {{ o_adress }}</div>
-			<div class="m-b-1">ФИО: {{ o_name }}</div>
-			<div class="m-b-1">Звонили с номера: <b>{{selected_phone}}</b></div>
-			<div class="m-b-1">Телефоны: {{ o_phones }}</div>
-			<div class="m-b-1">Водитель: {{ o_ovoditel_name }}</div>
+			<div class="m-b-1 p-a-01" [ngClass]="{ bordercolor: getBoder(o_name, 2) }">
+				<div>ФИО: {{ o_name }}</div>
+			</div>
+			<div class="m-b-1 p-a-01" [ngClass]="{ bordercolor: getBoder(selected_phone, 6) }">
+				<div>Звонили с номера: <b>{{selected_phone}}</b></div>
+			</div>
+			<div class="m-b-1 p-a-01" [ngClass]="{ bordercolor: getBoder(o_phones, 6) }">
+				<div>Телефоны: {{ o_phones }}</div>
+			</div>
+			<div class="m-b-1 p-a-01" [ngClass]="{ bordercolor: getBoder(o_ovoditel_name, 2) }">
+				<div>Водитель: {{ o_ovoditel_name }}</div>
+			</div>
+
 			<input (click)="sbros()" class="btn btn-danger pull-xs-left" type="submit" value="Сброс"/>
-			<input class="btn btn-success pull-xs-right" type="submit" value="Создать"/>
-
+			<input [disabled]="!getAllDataforOrder()"
+			       (click)="addNewOrder()"
+			       class="btn btn-success pull-xs-right"
+			       type="submit" value="Создать"/>
 		</div>
 
 		<div class="col-xs-4">
-			<h5>Курьеры (В работе : Выполнено | Время )</h5>
-
+			<h5>Заведение:</h5>
+			<ng-select
+				[options]="data.getComplexList_producer_send()"
+				(selected)="onSelected_producer_send($event)"
+				[allowClear]="true">
+			</ng-select>
+			<h5 class="m-t-2">Курьеры (В работе : Выполнено | Время )</h5>
 			<ul>
 				<li class="m-b-05" *ngFor="let voditel of data.getComplexList_voditel_send()"><span
 					(click)="addVoditel(voditel.name, voditel.id)" class="pointer text-primary"><i
@@ -123,6 +161,9 @@
 		</div>
 	</div>
 </div>
+
+
+<input [(ngModel)]="send_array" type="text">
 
 
 <ul>

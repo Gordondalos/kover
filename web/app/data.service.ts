@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/toPromise';
-import {Http, Headers, RequestOptions, Response } from '@angular/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 
 
 @Injectable ()
@@ -13,10 +13,17 @@ export class DataService {
 
     constructor ( private http : Http ) { }
 
+    setNewOrder ( send_data : string ) {
+        let headers = new Headers ( { 'Content-Type' : 'application/json' } );
+        let options = new RequestOptions ( { headers : headers } );
+        let Url = '/order/set_new_order';
+        return this.http.post ( Url, send_data, options )
+            .toPromise ()
+    }
+
+
     // Установим новый адресс
-
     setNewAdress ( newAdress : string, client_id : number ) {
-
         let mystringsend = {
             'newAdress' : newAdress,
             'client_id' : client_id
@@ -42,8 +49,6 @@ export class DataService {
         return this.http.get ( regNewClientUrl )
             .toPromise ();
     }
-
-
 
 
     setComplexList_phone ( data : any ) {

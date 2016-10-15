@@ -16073,14 +16073,24 @@ a.text-danger:focus, a.text-danger:hover {
   background-color: #E6E6FA;
 }
 
-/* line 23, ../../src/_sass/helper/_helper.sass */
+/* line 22, ../../src/_sass/helper/_helper.sass */
+.p-a-01 {
+  padding: 5px;
+}
+
+/* line 25, ../../src/_sass/helper/_helper.sass */
 .m-b-05 {
   margin-bottom: 0.5rem !important;
 }
 
-/* line 25, ../../src/_sass/helper/_helper.sass */
+/* line 27, ../../src/_sass/helper/_helper.sass */
 .m-b-07 {
   margin-bottom: 0.7rem !important;
+}
+
+/* line 30, ../../src/_sass/helper/_helper.sass */
+.bordercolor {
+  border: 1px dotted #2d26d6;
 }
 
 /* line 10, ../../src/_sass/cosmetic/_cosmetic.sass */
@@ -16108,4 +16118,10 @@ input[type="submit"] {
   height: 38px !important;
   border-radius: 0.25rem !important;
   padding-top: 4px !important;
+}
+
+/* line 32, ../../src/_sass/cosmetic/_cosmetic.sass */
+input:disabled,
+button:disabled {
+  color: black;
 }

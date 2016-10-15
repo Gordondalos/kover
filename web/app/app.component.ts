@@ -11,11 +11,12 @@ import { DataService } from './data.service';
 
 export class AppComponent implements OnInit {
 
+
     private new_client_name : string;
     private new_client_phone : string;
     private new_client_adress : string;
     private new_client_description : string;
-    private selected_phone : string = "";
+    private selected_phone : string = ""; // Тлефон с которого звонили
     private phones : any;
     private voditel_send : any;
     private producer_send : any;
@@ -23,21 +24,99 @@ export class AppComponent implements OnInit {
     private new_adress : string;
     private new_adress_arr : string[] = [];
     private client;
-    private o_phones : string;
-    private o_name : string;
-    private o_adress : string;
+    private o_phones : string; //Телефоны клиента
+    private o_name : string; // Имя клиента
+    private o_adress : string; // Адрес доставки
     private o_ovoditel_name : string;
     private o_ovoditel_id : string;
     private o_producer_send_id : string;
     private o_producer_send_title : string;
     private o_adress_from : string = '';
+    private o_adress_from_id : string = '';
     private id_client : string = "";
     private name_client : string = "";
     private phone_client : string = "";
     private client_description : string = "";
+    private order : string = "";
+    private summa_dostavki : number = 150;
+    private summa_vosnagrajdeniya : number = 50;
+    private send_array;
+
+    private summa_itog = this.summa_dostavki + this.summa_vosnagrajdeniya;
 
     constructor ( private data : DataService ) { }
 
+
+    // инициализация данных, они парсятся из твига
+    ngOnInit () {
+        var phones = JSON.parse ( $ ( '.phones' ).val () );
+        this.phones = phones;
+        this.data.setComplexList_phone ( phones );
+
+        var voditel_send = JSON.parse ( $ ( '.voditel_send' ).val () );
+        this.voditel_send = voditel_send;
+        this.data.setComplexList_voditel_send ( voditel_send );
+
+        var producer_send = JSON.parse ( $ ( '.producer_send' ).val () );
+        this.producer_send = producer_send;
+        this.data.setComplexList_producer_send ( producer_send );
+    }
+
+    //Метод добавления нового заказа
+    addNewOrder () {
+        var send_order_arr = {};
+        send_order_arr['o_phones'] = this.o_phones;
+        send_order_arr['o_name'] = this.o_name;
+        send_order_arr['o_adress'] = this.o_adress;
+        send_order_arr['o_ovoditel_name'] = this.o_ovoditel_name;
+        send_order_arr['o_ovoditel_id'] = this.o_ovoditel_id;
+        send_order_arr['o_adress_from'] = this.o_adress_from;
+        send_order_arr['client'] = this.client;
+        send_order_arr['order'] = this.order;
+        send_order_arr['selected_phone'] = this.selected_phone;
+        send_order_arr['summa_dostavki'] = this.summa_dostavki;
+        send_order_arr['summa_vosnagrajdeniya'] = this.summa_vosnagrajdeniya;
+        send_order_arr['summa_itog'] = this.summa_itog;
+
+        let myPromis = this.data.setNewOrder(JSON.stringify(send_order_arr))
+        .then ( res => {
+            var data = JSON.parse ( res._body ).res;
+            console.log( data);
+            if(data === '200'){
+                window.location = "/order/";
+            }else{
+                alert('Ошибка при добавлении заказа');
+            }
+
+        } );
+
+    }
+
+    getBoder ( properties, val ) {
+        if ( properties && properties.length > val ) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    //Включаем кнопку если заполнены все атрибуты
+    getAllDataforOrder () {
+        if ( (this.o_phones && this.o_phones.length > 6)
+            && (this.o_name && this.o_name.length != 0)
+            && (this.o_adress && this.o_adress.length > 2)
+            && (this.o_ovoditel_name && this.o_ovoditel_name.length > 2)
+            && (this.o_adress_from && this.o_adress_from.length > 2)
+            && (this.order && this.order.length > 2)
+            && (this.selected_phone && this.selected_phone.length > 6)
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    //Метод добавления нового клиента
     add_new_client () {
         if (
             this.new_client_name == undefined
@@ -65,6 +144,7 @@ export class AppComponent implements OnInit {
             } );
     }
 
+    // метод сброса заполненного клиента
     reset_new_client () {
         this.new_client_name = '';
         this.new_client_phone = '';
@@ -72,10 +152,12 @@ export class AppComponent implements OnInit {
         this.new_client_description = '';
     }
 
+    //метод отображающий форму добавления нового адреса
     add_new_adress_shows () {
         this.add_new_adress_show = true;
     }
 
+    //метод добавляющий новый адресс в базе
     add_new_adress () {
         let that = this;
         var new_adress = this.new_adress; // Поулчил новый адрес
@@ -88,7 +170,8 @@ export class AppComponent implements OnInit {
                     let resp = res.json ().resp;
                     if ( resp === '200' ) {
                         // alert('Успешно');
-                        that.addNewAdress ( that );
+                        that.client.adreses.push ( (new_adress) );
+                        that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
                     } else {
                         alert ( 'Неудача' );
                         that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
@@ -99,11 +182,6 @@ export class AppComponent implements OnInit {
                 }
             );
         }
-    }
-
-    private addNewAdress ( that ) {
-        that.client.adreses.push ( (this.new_adress) );
-        that.new_adress = ''; // Обнулили новый адрес чтобы его два раза не добавить
     }
 
     // метод сброса параметров заказа
@@ -143,24 +221,9 @@ export class AppComponent implements OnInit {
 
         this.o_phones = phones;
         this.o_name = this.client.name;
-
     }
 
-    // инициализация данных, они парсятся из твига
-    ngOnInit () {
-        var phones = JSON.parse ( $ ( '.phones' ).val () );
-        this.phones = phones;
-        this.data.setComplexList_phone ( phones );
-
-        var voditel_send = JSON.parse ( $ ( '.voditel_send' ).val () );
-        this.voditel_send = voditel_send;
-        this.data.setComplexList_voditel_send ( voditel_send );
-
-        var producer_send = JSON.parse ( $ ( '.producer_send' ).val () );
-        this.producer_send = producer_send;
-        this.data.setComplexList_producer_send ( producer_send );
-    }
-
+    // метод очистки информации о клиенте
     clear_info_client () {
         this.client = true;
         this.o_phones = "";
@@ -170,17 +233,17 @@ export class AppComponent implements OnInit {
         this.o_ovoditel_id = "";
     }
 
-
+    // метод на открытие селекта
     onSelectOpened () {
         //console.log('Select dropdown opened.');
     }
 
+    //метод на закрытие селекта
     onSelectClosed () {
         //console.log('Select dropdown closed.');
-
     }
 
-    // метод повешанный на изменения выбранного телефона
+    // метод  на изменения выбранного телефона
     onSelected_phone ( item ) {
         //console.log('Selected: ' + item.value + ', ' + item.label);
         var arr = item.value.split ( '.' );
@@ -189,6 +252,7 @@ export class AppComponent implements OnInit {
         this.selected_phone = arr[ 0 ];
     }
 
+    //метод потери нажимающий на крестик селекта
     onDeselected_phone ( item ) {
         console.log ( 'Deselected: ' + item.value + ', ' + item.label );
         //this.clear_info_client();
@@ -196,7 +260,6 @@ export class AppComponent implements OnInit {
 
     //Установка производителя заказа
     onSelected_producer_send ( item ) {
-        this.o_producer_send_id = item.value;
-        this.o_producer_send_title = item.label;
+        this.o_adress_from = item.label;
     }
 }
