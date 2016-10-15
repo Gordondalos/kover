@@ -50,7 +50,7 @@ class ClientAdressController extends Controller
 		    'adress'=>$newAdress
 	    ));
 
-	    if(empty($res)){
+	    if(empty($res)){ // если адреса нет то запишим ему этот адресс
 		    $em->persist($clientAdress);
 		    $em->flush();
 		    $resp = '200';
